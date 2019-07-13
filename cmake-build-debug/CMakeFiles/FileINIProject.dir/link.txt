@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/FileINIProject.dir/main.cpp.o CMakeFiles/FileINIProject.dir/CIniFile.cpp.o  -o FileINIProject 
