@@ -4,8 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject 1.0/CIniFile.cpp" "/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject 1.0/cmake-build-debug/CMakeFiles/FileINIProject.dir/CIniFile.cpp.o"
-  "/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject 1.0/main.cpp" "/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject 1.0/cmake-build-debug/CMakeFiles/FileINIProject.dir/main.cpp.o"
+  "/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject/CIniFile.cpp" "/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject/cmake-build-debug/CMakeFiles/FileINIProject.dir/CIniFile.cpp.o"
+  "/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject/main.cpp" "/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject/cmake-build-debug/CMakeFiles/FileINIProject.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

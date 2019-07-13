@@ -8,28 +8,28 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject 1.0/cmake-build-debug"/>
+				<Option working_dir="/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/FileINIProject\ 1.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/FileINIProject\ 1.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/FileINIProject\ 1.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/FileINIProject\ 1.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/FileINIProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/FileINIProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/FileINIProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/FileINIProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject 1.0/cmake-build-debug"/>
+				<Option working_dir="/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/FileINIProject\ 1.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/FileINIProject\ 1.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/FileINIProject\ 1.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/FileINIProject\ 1.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/FileINIProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/FileINIProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/FileINIProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/FileINIProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="FileINIProject">
-				<Option output="/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject 1.0/cmake-build-debug/FileINIProject" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject 1.0/cmake-build-debug"/>
+				<Option output="/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject/cmake-build-debug/FileINIProject" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -46,15 +46,15 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/FileINIProject\ 1.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 FileINIProject"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/FileINIProject\ 1.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/FileINIProject\ 1.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/FileINIProject\ 1.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/FileINIProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 FileINIProject"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/FileINIProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/FileINIProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/FileINIProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="FileINIProject/fast">
-				<Option output="/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject 1.0/cmake-build-debug/FileINIProject" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject 1.0/cmake-build-debug"/>
+				<Option output="/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject/cmake-build-debug/FileINIProject" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -71,36 +71,36 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/FileINIProject\ 1.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 FileINIProject/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/FileINIProject\ 1.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/FileINIProject\ 1.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/FileINIProject\ 1.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/FileINIProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 FileINIProject/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/FileINIProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/FileINIProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/FileINIProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject 1.0/cmake-build-debug"/>
+				<Option working_dir="/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/FileINIProject\ 1.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/FileINIProject\ 1.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/FileINIProject\ 1.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/FileINIProject\ 1.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/FileINIProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/FileINIProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/FileINIProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/FileINIProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject 1.0/CIniFile.cpp">
+		<Unit filename="/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject/CIniFile.cpp">
 			<Option target="FileINIProject"/>
 		</Unit>
-		<Unit filename="/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject 1.0/CIniFile.h">
+		<Unit filename="/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject/CIniFile.h">
 			<Option target="FileINIProject"/>
 		</Unit>
-		<Unit filename="/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject 1.0/Key.h">
+		<Unit filename="/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject/Key.h">
 			<Option target="FileINIProject"/>
 		</Unit>
-		<Unit filename="/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject 1.0/main.cpp">
+		<Unit filename="/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject/main.cpp">
 			<Option target="FileINIProject"/>
 		</Unit>
-		<Unit filename="/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject 1.0/CMakeLists.txt">
+		<Unit filename="/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

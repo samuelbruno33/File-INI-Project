@@ -1,12 +1,11 @@
 //
-// Created by samuel on 24/06/19.
+// Created by samuel on 05/07/19.
 //
 
 #include <string>
 #include <vector>
 #include <iostream>
 #include <fstream>
-
 #include "CIniFile.h"
 
 bool CIniFile::ReadFile()
@@ -125,14 +124,24 @@ string CIniFile::GetSection(int const &keyID) const
         return "";
 }
 
-int CIniFile::NumValuesInSection(int const &keyID)
+string CIniFile::GetValuesInSection(int const &keyID)
+{
+    if(keyID == noID)
+        return "ID non trovato!";
+
+    cout<<"\nSezione = " << GetSection(keyID) << endl;
+    for (int valueID = 0; valueID < NumKeyValuesInSection(keyID); valueID++)
+        cout<<"Nome Valore = "<<GetValueName(keyID,valueID)<<", Valore = "<<GetValue<string>(keyID,valueID)<<endl;
+}
+
+int CIniFile::NumKeyValuesInSection(int const &keyID)
 {
     if(keyID < keys.size())
         return keys[keyID].names.size();
     return 0;
 }
 
-int CIniFile::NumValuesInSection(string const &keyName)
+int CIniFile::NumKeyValuesInSection(string const &keyName)
 {
     int keyID = FindSection(keyName);
     if(keyID == noID)
@@ -165,6 +174,12 @@ string CIniFile::GetHeaderComment(int const &commentID) const
     if(commentID < comments.size())
         return comments[commentID];
     return "";
+}
+
+string CIniFile::GetAllHeaderComments()
+{
+    for(int commentID = 0; commentID < NumHeaderComments(); commentID++)
+        cout<<";"<<GetHeaderComment(commentID)<<endl;
 }
 
 int CIniFile::NumKeyCommentsInSection(int const &keyID) const
@@ -212,4 +227,153 @@ string CIniFile::GetKeyComment(string const &keyName, int const &commentID) cons
     if (keyID == noID)
         return "";
     return GetKeyComment(keyID, commentID);
+}
+
+bool CIniFile::DeleteValueInSection(string const keyName, string const valueName)
+{
+    int keyID = FindSection(keyName);
+    if(keyID == noID)
+        return false;
+
+    int valueID = FindValue(keyID, valueName);
+    if(valueID == noID)
+        return false;
+
+    auto namePos = keys[keyID].names.begin() + valueID;
+    auto valuePos = keys[keyID].value.begin() + valueID;
+    keys[keyID].names.erase(namePos, namePos + 1);
+    keys[keyID].value.erase(valuePos, valuePos + 1);
+    return true;
+}
+
+bool CIniFile::DeleteSection(string const keyName)
+{
+    int keyID = FindSection(keyName);
+    if(keyID == noID)
+        return false;
+
+    auto sectionPos = section.begin() + keyID;
+    auto keyPos = keys.begin() + keyID;
+    section.erase(sectionPos, sectionPos + 1);
+    keys.erase(keyPos, keyPos + 1);
+
+    return true;
+}
+
+bool CIniFile::DeleteHeaderComment(int commentID)
+{
+    if (commentID < comments.size()) {
+        auto commentPos = comments.begin() + commentID;
+        comments.erase(commentPos, commentPos + 1);
+        return true;
+    }
+    return false;
+}
+
+bool CIniFile::DeleteCommentInSection(int const keyID, int const commentID)
+{
+    if(keyID < keys.size() && commentID < keys[keyID].comment.size()) {
+        auto commentPos = keys[keyID].comment.begin() + commentID;
+        keys[keyID].comment.erase(commentPos, commentPos + 1);
+        return true;
+    }
+    return false;
+}
+
+bool CIniFile::DeleteCommentInSection(string const keyName, int const commentID)
+{
+    int keyID = FindSection(keyName);
+    if(keyID == noID)
+        return false;
+    return DeleteCommentInSection(keyID, commentID);
+}
+
+bool CIniFile::DeleteAllCommentsInSection(int const keyID)
+{
+    if(keyID < keys.size()) {
+        keys[keyID].comment.clear();
+        return true;
+    }
+    return false;
+}
+
+bool CIniFile::DeleteAllCommentsInSection(string const keyName)
+{
+    int keyID = FindSection(keyName);
+    if(keyID == noID)
+        return false;
+    return DeleteAllCommentsInSection(keyID);
+}
+
+void CIniFile::Type_Choice_SetValue(int type_choice, string putKeys, string putString, string insValue)
+{
+    try
+    {
+        if(type_choice == 1)
+            SetValue(putKeys,putString,boost::lexical_cast<string>(insValue));
+        else if(type_choice == 2)
+            SetValue(putKeys,putString,boost::lexical_cast<int>(insValue));
+        else if(type_choice == 3)
+            SetValue(putKeys,putString,boost::lexical_cast<float>(insValue));
+        else if(type_choice == 4){
+            insValue = getBoolValue(insValue);
+            SetValue(putKeys,putString,boost::lexical_cast<bool>(insValue));
+        }
+        else
+            cout<<"Hai inserito un codice di tipo della variabile sbagliato!"<<endl;
+    }
+    catch (boost::bad_lexical_cast&) {
+        std::cout << "Conversione fallita! Proabile errore di scelta di tipo del valore." << std::endl;
+    }
+}
+
+void CIniFile::Type_Choice_GetValue(int type_choice, string putKeys, string putString)
+{
+    try
+    {
+        if(type_choice == 1)
+            cout<<"Valore: "<<GetValue<string>(putKeys,putString)<<endl;
+        else if(type_choice == 2)
+            cout<<"Valore: "<<GetValue<int>(putKeys,putString)<<endl;
+        else if(type_choice == 3)
+            cout<<"Valore: "<<GetValue<float>(putKeys,putString)<<endl;
+        else if(type_choice == 4)
+            cout<<"Valore: "<<GetValue<bool>(putKeys,putString)<<endl;
+        else
+            cout<<"Hai inserito un codice di tipo della variabile sbagliato!"<<endl;
+    }
+    catch (boost::bad_lexical_cast&) {
+        std::cout << "Conversione fallita! Proabile errore di scelta di tipo del valore." << std::endl;
+    }
+}
+
+void CIniFile::Type_Choice_GetValue_DefValue(int type_choice, string putKeys, string putString, string insValue)
+{
+    try
+    {
+        if(type_choice == 1)
+            cout<<"Valore: "<<GetValue(putKeys,putString,boost::lexical_cast<string>(insValue))<<endl;
+        else if(type_choice == 2)
+            cout<<"Valore: "<<GetValue(putKeys,putString,boost::lexical_cast<int>(insValue))<<endl;
+        else if(type_choice == 3)
+            cout<<"Valore: "<<GetValue(putKeys,putString,boost::lexical_cast<float>(insValue))<<endl;
+        else if(type_choice == 4){
+            insValue = getBoolValue(insValue);
+            cout<<"Valore: "<<GetValue(putKeys,putString,boost::lexical_cast<bool>(insValue))<<endl;
+        }
+        else
+            cout<<"Hai inserito un codice di tipo della variabile sbagliato!"<<endl;
+    }
+    catch (boost::bad_lexical_cast&) {
+        std::cout << "Conversione fallita! Proabile errore di scelta di tipo del valore." << std::endl;
+    }
+}
+
+void CIniFile::toString()
+{
+    for(int keyID = 0; keyID < NumSections(); keyID++) {
+        cout<<"\nSezione = " << GetSection(keyID) << endl;
+        for (int valueID = 0; valueID < NumKeyValuesInSection(keyID); valueID++)
+            cout<<"Nome Valore = "<<GetValueName(keyID,valueID)<<", Valore = "<<GetValue<string>(keyID,valueID)<<endl;
+    }
 }

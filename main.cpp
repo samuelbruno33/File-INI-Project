@@ -1,58 +1,217 @@
+//
+// Created by sbruno on 09/07/2019.
+//
+
 #include <iostream>
 #include <string>
-
 #include "CIniFile.h"
 
-//Path lavoro: C:\Users\sbruno\Documents\Samuel\Varie\Uni\Lab Programmazione\FileINIProject 1.2\Files\ini_test.ini
-//Path casa: /home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject 1.2/Files/ini_test.ini
+using namespace std;
 
-int main() {
-    ///Utilizzo la raw string per inserire correttamente la path e non usare le doppie barre laterali
-    CIniFile iniFile(R"(C:\Users\sbruno\Documents\Samuel\Varie\Uni\Lab Programmazione\FileINIProject\Files\ini_test.ini)");
+int main()
+{
+    int ans=0,choice,type_choice,putComment,defVal;
+    string putString,putKeys,insValue,jumpString;
+
+    CIniFile iniFile(R"(/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject 1.5/Files/ini_test.ini)");
     iniFile.ReadFile();
 
-    //TEST LETTURA DATI DA FILE
-    cout << "Num Sections = " << iniFile.NumSections() << endl;
-    cout << "Num Values for Prova = " << iniFile.NumValuesInSection("Prova") << endl;
-    cout << "Num Values for Ripperoni = " << iniFile.NumValuesInSection("Ripperoni") << endl;
-    cout << "Ripperoni:Osvaldo = " << iniFile.GetValue<string>("Ripperoni", "Osvaldo", "Pippo") << endl;
-    cout << "Num of Section 3 Test = " << iniFile.NumValuesInSection("Section 3 Test") << endl;
-    cout << "Section 3 Test:Type_Integer1 = " << iniFile.GetValue<int>("Section 3 Test", "Type_Integer1") << endl;
-    cout << "Prova:type_Bool = " << iniFile.GetValue<bool>("Prova", "type_Bool") << endl;
-    cout << "Prova:type2_Bool = " << iniFile.GetValue<bool>("Prova", "type2_Bool") << endl;
+    while(ans==0)
+    {
+        cout<<"\n---------MENU'---------\n";
+        cout<<"0)Esci dal programma\n";
+        cout<<"1)Aggiungi commento d'intestazione\n";
+        cout<<"2)Aggiungi sezione\n";
+        cout<<"3)Aggiungi valore all'interno di una sezione\n";
+        cout<<"4)Aggiungi commento all'interno di una sezione\n";
+        cout<<"5)Visualizza tutta la sezione\n";
+        cout<<"6)Visualizza un valore specifico presente in una sezione\n";
+        cout<<"7)Visualizza un commento specifico presente in una sezione\n";
+        cout<<"8)Visualizza tutti i commenti d'intestazione\n";
+        cout<<"9)Visualizza uno specifico commento d'intestazione\n";
+        cout<<"10)Elimina sezione\n";
+        cout<<"11)Elimina un valore specifico in una sezione\n";
+        cout<<"12)Elimina un commento specifico in una sezione\n";
+        cout<<"13)Elimina tutti i commenti d'intestazione\n";
+        cout<<"14)Elimina uno specifico commento d'intestazione\n";
+        cout<<"15)Visualizza contenuto del file INI\n";
+        cout<<"16)Salva file con un altro nome\n";
+        cout<<"\n";
 
-    //TEST COMMENTI
-    cout<<iniFile.GetHeaderComment(0)<<endl;
-    cout<<iniFile.GetHeaderComment(1)<<endl;
-    cout<<iniFile.GetHeaderComment(5)<<endl;
-    cout<<iniFile.NumKeyCommentsInSection(1)<<endl;
-    cout<<iniFile.NumKeyCommentsInSection("Test Scrittura")<<endl;
-    cout<<iniFile.GetKeyComment("Prova",0)<<endl;
-    cout<<iniFile.NumHeaderComments()<<endl;
+        cout<<"Inserisci la tua scelta:";
+        cin>>choice;
 
-    //TEST PARAMETRO IN SEZIONE
-    cout<<iniFile.GetValueName("Section 1",0)<<endl;
+        //Salta la riga per problemi di inserimento del carattere con il cin, poichè una volta preso l'input (di un solo carattere
+        //alla volta), il cin a fine riga di input mette uno /n che sballa la visualizzazione e l'input successivi presenti nei case.
+        getline(cin, jumpString);
 
-    //TEST SCRITTURA SU FILE
-    iniFile.AddSection("Test Scrittura");
-    iniFile.AddKeyCommentInSection("Test Scrittura","Commento per la sezione Test Scrittura");
-    iniFile.NewHeaderComment("Questo invece è un commento di scrittura per l'header");
-    iniFile.SetValue("Test Scrittura","test_Write",50);
-    iniFile.SetValue(3,0,55); //Sovrascrive il dato 50 sopra in 55
+        switch(choice)
+        {
+            default:cout<<"Attenzione! Stai per uscire dal programma...Attendi!"<<endl;
+                cout<<"\n";
+                ans=1;
+                break;
 
-    //TEST CANCELLAZIONE DATI SU FILE
-    //iniFile.DeleteValue("drivers", "timer");
+            case 1:
+                cout<<"Inserisci il commento da porre nell'intestazione: ";
+                getline(cin,putString);
+                iniFile.NewHeaderComment(putString);
+                iniFile.WriteFile();
+                cout<<"Inserimento avvenuto con successo!"<<endl;
+                break;
 
-    iniFile.WriteFile();
+            case 2:
+                cout<<"Inserisci il nome che vuoi dare alla nuova sezione: ";
+                getline(cin,putString);
+                iniFile.AddSection(putString);
+                iniFile.WriteFile();
+                cout<<"Inserimento avvenuto con successo!"<<endl;
+                break;
 
-    ///Se si vuole salvare un file con un altra estensione del tipo .sav
-    //iniFile.setPath(R"(C:\Users\sbruno\Documents\Samuel\Varie\Uni\Lab Programmazione\FileINIProject\Files\ini_test.sav)");
+            case 3:
+                cout<<"Inserisci il nome della sezione che vuoi visualizzare. Se si inserisce una nome della sezione non esistente ne verrà creata una nuova."<<endl;
+                cout<<"Inserisci: ";
+                getline(cin,putKeys);
+                cout<<"Inserisci il valore da porre all'interno di "<<putKeys<<": ";
+                getline(cin,putString);
+                cout<<"Vuoi inserire una stringa, un intero, un float o un booleano? <1-String,2-Int,3-Float,4-Bool>: ";
+                cin>>type_choice;
+                if(cin.fail()){
+                    cout<<"Hai inserito un input sbagliato!";
+                    cin.clear();
+                    ans=1;
+                    break;
+                }
+                getline(cin, jumpString);
+                cout<<"Inserisci un valore da inserire all'interno di "<<putString<<": ";
+                getline(cin,insValue);
+                iniFile.Type_Choice_SetValue(type_choice,putKeys,putString,insValue);
+                iniFile.WriteFile();
+                break;
 
-    ///Output dell'intero file INI
-    for(int keyID = 0; keyID < iniFile.NumSections(); keyID++) {
-        cout<<"\nSection = " << iniFile.GetSection(keyID) << endl;
-        for (int valueID = 0; valueID < iniFile.NumValuesInSection(keyID); valueID++)
-            cout<<"ValueName = "<<iniFile.GetValueName(keyID,valueID)<<"Value = "<<iniFile.GetValue<string>(keyID,valueID)<<endl;
+            case 4:
+                cout<<"Inserisci la sezione dove verrà scritto il commento: ";
+                getline(cin,putKeys);
+                if(iniFile.FindSection(putKeys) == iniFile.noID)
+                {
+                    cout<<"Nome sezione non esistente!"<<endl;
+                    break;
+                }
+                cout<<"Inserisci il commento da porre all'interno di "<<putKeys<<": ";
+                getline(cin,putString);
+                iniFile.AddKeyCommentInSection(putKeys,putString);
+                iniFile.WriteFile();
+                cout<<"Inserimento avvenuto con successo!"<<endl;
+                break;
+
+            case 5:
+                cout<<"Inserisci la sezione che vuoi visualizzare: ";
+                getline(cin,putKeys);
+                if(iniFile.FindSection(putKeys) == iniFile.noID)
+                {
+                    cout<<"Nome sezione non esistente!"<<endl;
+                    break;
+                }
+                iniFile.GetValuesInSection(iniFile.FindSection(putKeys));
+                break;
+
+            case 6:
+                cout<<"Inserisci la sezione di cui vuoi visualizzare i dati: ";
+                getline(cin,putKeys);
+                if(iniFile.FindSection(putKeys) == iniFile.noID)
+                {
+                    cout<<"Nome sezione non esistente!"<<endl;
+                    break;
+                }
+                cout<<"Inserisci il nome del parametro da cercare all'interno di "<<putKeys<<": ";
+                getline(cin,putString);
+                if(iniFile.FindValue(iniFile.FindSection(putKeys),putString) == iniFile.noID)
+                {
+                    cout<<"Nome parametro non esistente!"<<endl;
+                    break;
+                }
+                cout<<"Stai cercando una stringa, un intero, un float o un booleano? <1-String,2-Int,3-Float,4-Bool>: ";
+                cin>>type_choice;
+                if(cin.fail()){
+                    cout<<"Hai inserito un input sbagliato!";
+                    cin.clear();
+                    ans=1;
+                    break;
+                }
+                cout<<"Vuoi inserire un valore di default nel caso non esistessero il parametro o la sezione da cercare? <0-no,1-si>: ";
+                cin>>defVal;
+                if(cin.fail()){
+                    cout<<"Hai inserito un input sbagliato!";
+                    cin.clear();
+                    ans=1;
+                    break;
+                }
+                getline(cin, jumpString);
+
+                if(defVal == 1){
+                    cout<<"Inserisci il valore di default: ";
+                    getline(cin,insValue);
+                    iniFile.Type_Choice_GetValue_DefValue(type_choice,putKeys,putString,insValue);
+                }
+                else if(defVal == 0)
+                    iniFile.Type_Choice_GetValue(type_choice,putKeys,putString);
+                else
+                    cout<<"Hai inserito un codice di inserimento del valore di default sbagliato!"<<endl;
+                break;
+
+            case 7:
+                cout<<"Inserisci la sezione da cui vuoi visualizzare il commento: ";
+                getline(cin,putKeys);
+                if(iniFile.FindSection(putKeys) == iniFile.noID)
+                {
+                    cout<<"Nome sezione non esistente!"<<endl;
+                    break;
+                }
+                cout<<"Inserisci il numero del relativo commento che vuoi visualizzare: ";
+                cin>>putComment;
+                if(cin.fail()){
+                    cout<<"Hai inserito un input sbagliato!";
+                    cin.clear();
+                    ans=1;
+                    break;
+                }
+                else if(putComment > iniFile.NumKeyCommentsInSection(putKeys))
+                    cout<<"Hai inserito un numero di commento che non esiste!"<<endl;
+                else
+                    cout<<";"<<iniFile.GetKeyComment(putKeys,putComment)<<endl;
+                break;
+
+            case 8:
+                iniFile.GetAllHeaderComments();
+                break;
+
+            case 9:
+                cout<<"Inserisci il numero del relativo commento d'intestazione che vuoi visualizzare. Il numero del commento da inserire inizia da 0."<<endl;
+                cout<<"Inserisci: ";
+                cin>>putComment;
+                if(cin.fail()){
+                    cout<<"Hai inserito un input sbagliato!";
+                    cin.clear();
+                    ans=1;
+                    break;
+                }
+                else if(putComment > iniFile.NumHeaderComments())
+                    cout<<"Hai inserito un numero di commento che non esiste!"<<endl;
+                else
+                    cout<<";"<<iniFile.GetHeaderComment(putComment)<<endl;
+                break;
+
+            case 15:
+                iniFile.toString();
+                break;
+
+            case 16:
+                cout<<"Scegli il nome che vuoi dare al tuo nuovo file: ";
+                getline(cin,putString);
+                //iniFile.setPath("C:\\Users\\sbruno\\Documents\\Samuel\\Varie\\Uni\\Lab Programmazione\\FileINIProject 1.5\\Files\\"<<putString<<"");
+                cout<<"\nFile salvato correttamente!"<<endl;
+                break;
+        }
     }
-    return 0;
+   return 0;
 }

@@ -1,12 +1,11 @@
 //
-// Created by samuel on 24/06/19.
+// Created by samuel on 05/07/19.
 //
 
 #include <string>
 #include <vector>
 #include <typeinfo>
 #include <boost/lexical_cast.hpp>
-
 #include "Key.h"
 
 #ifndef FILEINIPROJECT_CINIFILE_H
@@ -20,7 +19,7 @@ public:
     enum error{noID = -1};
 
     explicit CIniFile(string const initialPath = "") : defaultPath(initialPath) {}
-    virtual ~CIniFile() = default;;
+    virtual ~CIniFile() = default;
 
     bool ReadFile();
     bool WriteFile();
@@ -35,11 +34,10 @@ public:
         return defaultPath;
     }
 
+    ///Funzioni che riguardano le sezioni
+
     //Funzione che cerca l'ID della sezione attraverso il suo nome e ritorna un chiave di errore se non esiste
     int FindSection(string const &keyName) const;
-
-    //Funzione che cerca l'ID del valore all'interno della sezione e ritorna un chiave di errore se non esiste
-    int FindValue(int const &keyID, string const &valueName) const;
 
     //Ritorna il numero corrente delle sezioni all'interno dell'intero file ini
     int NumSections() const
@@ -53,37 +51,78 @@ public:
     //Ritorna una stringa contente il nome della sezione cercata
     string GetSection(int const &keyID) const;
 
-    //Ritorna il numero di valori delle chiavi per una specifica sezione
-    int NumValuesInSection(int const &keyID);
-    int NumValuesInSection(string const &keyName);
+    //Stampa il nome della sezione con i suoi relativi parametri e valori
+    string GetValuesInSection(int const &keyID);
 
-    // Ritorna il nome di una chiave per una specifica sezione
+    //Ritorna il numero dei parametri presenti in una sezione
+    int NumKeyValuesInSection(int const &keyID);
+    int NumKeyValuesInSection(string const &keyName);
+
+    // Elimina un intera sezione e i suoi relativi parametri
+    bool DeleteSection(string keyName);
+
+    ///Funzioni che riguardano le chiavi all'interno delle sezioni
+
+    //Funzione che cerca l'ID del valore all'interno della sezione e ritorna un chiave di errore se non esiste
+    int FindValue(int const &keyID, string const &valueName) const;
+
+    // Ritorna il nome del parametro cercato per una specifica sezione
     string GetValueName(int const &keyID, int const &valueID) const;
     string GetValueName(string const &keyName, int const &valueID) const;
-
-    // Numero di commenti nell'intestazione
-    int NumHeaderComments()
-    {
-        return comments.size();
-    }
-
-    // Aggiungi una riga di commento nell'intestazione
-    void NewHeaderComment(string const &comment);
-
-    // Ritorna un commento specifico presente nell'intestazione
-    string GetHeaderComment(int const &commentID) const;
 
     // Ritorna il numero dei commenti per una determinata sezione
     int NumKeyCommentsInSection(int const &keyID) const;
     int NumKeyCommentsInSection(string const &keyName) const;
 
-    // Aggiungi un commento interno alla sezione
+    // Aggiunge un commento interno alla sezione
     bool AddKeyCommentInSection(int const &keyID, string const &comment);
     bool AddKeyCommentInSection(string const &keyName, string const &comment);
 
     // Ritorna un commento interno alla sezione
     string GetKeyComment(int const &keyID, int const &commentID) const;
     string GetKeyComment(string const &keyName, int const &commentID) const;
+
+    // Elimina un parametro e il corrispondente valore presente in una determinata sezione
+    bool DeleteValueInSection(string const keyName, string const valueName);
+
+    // Elimina un commento presente nella sezione
+    bool DeleteCommentInSection(int const keyID, int const commentID);
+    bool DeleteCommentInSection(string const keyName, int const commentID);
+
+    // Elimina tutti i commenti presenti nella sezione
+    bool DeleteAllCommentsInSection(int const keyID);
+    bool DeleteAllCommentsInSection(string const keyName);
+
+    ///Funzioni che riguardano i commenti d'intestazione
+
+    // Ritorna il numero di commenti presenti nell'intestazione
+    int NumHeaderComments()
+    {
+        return comments.size();
+    }
+
+    // Aggiunge una riga di commento nell'intestazione
+    void NewHeaderComment(string const &comment);
+
+    // Ritorna un commento specifico presente nell'intestazione
+    string GetHeaderComment(int const &commentID) const;
+    string GetAllHeaderComments();
+
+    // Elimina un singolo commento d'intestazione
+    bool DeleteHeaderComment(int commentID);
+
+    // Elimina tutti i commenti d'intestazione
+    void DeleteHeaderComments()
+    {
+        comments.clear();
+    }
+
+    ///Funzioni che servono per fare il Set e il Get dei valori delle chiavi all'interno del file INI
+
+    //Funzione che serve per determinare il tipo di dato da inserire nel file INI
+    void Type_Choice_SetValue(int type_choice, string putKeys, string putString, string insValue);
+    void Type_Choice_GetValue(int type_choice, string putKeys, string putString);
+    void Type_Choice_GetValue_DefValue(int type_choice, string putKeys, string putString, string insValue);
 
     //Setta i valori delle chiavi all'interno del file
     template<typename T>
@@ -156,10 +195,15 @@ public:
         //invece '0', 'no', 'false' e 'off' ritornano quindi FALSE.
         if(ret == "1" || ret == "yes" || ret == "true" || ret == "on")
             ret = "1";
-        else
+        else if(ret == "0" || ret == "no" || ret == "false" || ret == "off")
             ret = "0";
+        else
+            ret = "Errore nell'inserimento del valore booleano.";
         return ret;
     }
+
+    ///Funzione che stampa l'intero file INI
+    void toString();
 
 private:
     string defaultPath;
