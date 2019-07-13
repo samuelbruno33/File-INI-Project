@@ -1,5 +1,5 @@
 //
-// Created by samuel on 05/07/19.
+// Created by samuel on 24/06/19.
 //
 
 #include <string>
@@ -47,7 +47,7 @@ bool CIniFile::ReadFile()
                         if (section.empty())
                             NewHeaderComment(line.substr(pLeft + 1));
                         else
-                            AddKeyComment(keyName, line.substr(pLeft + 1));
+                            AddKeyCommentInSection(keyName, line.substr(pLeft + 1));
                         break;
                 }
             }
@@ -55,10 +55,7 @@ bool CIniFile::ReadFile()
     }
     f.close();
 
-    if (section.size()){
-        return true;
-    }
-    return false;
+    return !section.empty();
 }
 
 bool CIniFile::WriteFile()
@@ -76,7 +73,7 @@ bool CIniFile::WriteFile()
     if (!comments.empty())
         f << endl;
 
-    //Scrive su file le sezioni e le chiavi contenti commenti e valori
+    //Scrive su file le sezioni contenenti le varie chiavi di valori
     for (keyID = 0; keyID < keys.size(); keyID++) {
         f << '[' << section[keyID] << ']' << endl;
         // Commenti
@@ -92,7 +89,7 @@ bool CIniFile::WriteFile()
     return true;
 }
 
-int CIniFile::FindKey(string const &keyName) const
+int CIniFile::FindSection(string const &keyName) const
 {
     for(int keyID = 0; keyID < section.size(); keyID++)
         if (section[keyID] == keyName)
@@ -128,22 +125,22 @@ string CIniFile::GetSection(int const &keyID) const
         return "";
 }
 
-int CIniFile::NumValues(int const &keyID) //TODO Vedere se posso farla con i template
+int CIniFile::NumValuesInSection(int const &keyID)
 {
     if(keyID < keys.size())
         return keys[keyID].names.size();
     return 0;
 }
 
-int CIniFile::NumValues(string const &keyName)
+int CIniFile::NumValuesInSection(string const &keyName)
 {
-    int keyID = FindKey(keyName);
+    int keyID = FindSection(keyName);
     if(keyID == noID)
         return 0;
     return keys[keyID].names.size();
 }
 
-string CIniFile::GetValueName(int const &keyID, int const &valueID) const //TODO Vedere se posso farla con i template
+string CIniFile::GetValueName(int const &keyID, int const &valueID) const
 {
     if(keyID < keys.size() && valueID < keys[keyID].names.size())
         return keys[keyID].names[valueID];
@@ -152,7 +149,7 @@ string CIniFile::GetValueName(int const &keyID, int const &valueID) const //TODO
 
 string CIniFile::GetValueName(string const &keyName, int const &valueID) const
 {
-    int keyID = FindKey(keyName);
+    int keyID = FindSection(keyName);
     if(keyID == noID)
         return "";
     return GetValueName(keyID, valueID);
@@ -170,22 +167,22 @@ string CIniFile::GetHeaderComment(int const &commentID) const
     return "";
 }
 
-int CIniFile::NumKeyComments(int const &keyID) const
+int CIniFile::NumKeyCommentsInSection(int const &keyID) const
 {
     if(keyID < keys.size())
         return keys[keyID].comment.size();
     return 0;
 }
 
-int CIniFile::NumKeyComments(string const &keyName) const
+int CIniFile::NumKeyCommentsInSection(string const &keyName) const
 {
-    int keyID = FindKey(keyName);
+    int keyID = FindSection(keyName);
     if(keyID == noID)
         return 0;
     return keys[keyID].comment.size();
 }
 
-bool CIniFile::AddKeyComment(int const &keyID, string const &comment)
+bool CIniFile::AddKeyCommentInSection(int const &keyID, string const &comment)
 {
     if(keyID < keys.size()) {
         keys[keyID].comment.resize(keys[keyID].comment.size() + 1, comment);
@@ -194,12 +191,12 @@ bool CIniFile::AddKeyComment(int const &keyID, string const &comment)
     return false;
 }
 
-bool CIniFile::AddKeyComment(string const &keyName, string const &comment)
+bool CIniFile::AddKeyCommentInSection(string const &keyName, string const &comment)
 {
-    int keyID = FindKey(keyName);
+    int keyID = FindSection(keyName);
     if (keyID == noID)
         return false;
-    return AddKeyComment(keyID, comment);
+    return AddKeyCommentInSection(keyID, comment);
 }
 
 string CIniFile::GetKeyComment(int const &keyID, int const &commentID) const
@@ -211,7 +208,7 @@ string CIniFile::GetKeyComment(int const &keyID, int const &commentID) const
 
 string CIniFile::GetKeyComment(string const &keyName, int const &commentID) const
 {
-    int keyID = FindKey(keyName);
+    int keyID = FindSection(keyName);
     if (keyID == noID)
         return "";
     return GetKeyComment(keyID, commentID);

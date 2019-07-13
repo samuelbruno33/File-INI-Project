@@ -3,36 +3,56 @@
 
 #include "CIniFile.h"
 
+//Path lavoro: C:\Users\sbruno\Documents\Samuel\Varie\Uni\Lab Programmazione\FileINIProject 1.2\Files\ini_test.ini
+//Path casa: /home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject 1.2/Files/ini_test.ini
+
 int main() {
-    CIniFile iniFile("/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject/ini_test.ini");
+    ///Utilizzo la raw string per inserire correttamente la path e non usare le doppie barre laterali
+    CIniFile iniFile(R"(C:\Users\sbruno\Documents\Samuel\Varie\Uni\Lab Programmazione\FileINIProject 1.2\Files\ini_test.ini)");
     iniFile.ReadFile();
 
-    cout << "Hello" << endl;
-    cout << "NKeys = " << iniFile.NumSections() << endl;
-    cout << "Num Values for 386enh = " << iniFile.NumValues("386enh") << endl;
-    cout << "Num Values for popopopoaiaiaiaia = " << iniFile.NumValues("popopopoaiaiaiaia") << endl;
-    cout << "Num Values for crapXXX = " << iniFile.NumValues("crapXXX") << endl;
-    //cout << "crapXXX:fred = " << iniFile.GetValue( "crapXXX", "fred", 3.14159) << endl;
-    cout << "ScreenTime:previousProjectorProcessID = ";
-    //cout << iniFile.GetValue<int>("ScreenTime", "previousProjectorProcessID") << endl;
-    //iniFile.DeleteValue( "drivers", "timer");
-    cout << "Num drivers = " << iniFile.NumValues( "drivers") << endl;
-    //cout << "drivers:timer = " << iniFile.GetValue<string>( "drivers", "timer") << endl;
-    //cout << "drivers:wave = " << iniFile.GetValue<string>( "drivers", "wave") << endl;
+    //TEST LETTURA DATI DA FILE
+    cout << "Num Sections = " << iniFile.NumSections() << endl;
+    cout << "Num Values for Prova = " << iniFile.NumValuesInSection("Prova") << endl;
+    cout << "Num Values for Ripperoni = " << iniFile.NumValuesInSection("Ripperoni") << endl;
+    cout << "Ripperoni:Osvaldo = " << iniFile.GetValue<string>("Ripperoni", "Osvaldo", "Pippo") << endl;
+    cout << "Num of Section 3 Test = " << iniFile.NumValuesInSection("Section 3 Test") << endl;
+    cout << "Section 3 Test:Type_Integer1 = " << iniFile.GetValue<int>("Section 3 Test", "Type_Integer1") << endl;
+    cout << "Prova:type_Bool = " << iniFile.GetValue<bool>("Prova", "type_Bool") << endl;
+    cout << "Prova:type2_Bool = " << iniFile.GetValue<bool>("Prova", "type2_Bool") << endl;
 
-    iniFile.setPath("/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject/ini_test.sav");
+    //TEST COMMENTI
+    cout<<iniFile.GetHeaderComment(0)<<endl;
+    cout<<iniFile.GetHeaderComment(1)<<endl;
+    cout<<iniFile.GetHeaderComment(5)<<endl;
+    cout<<iniFile.NumKeyCommentsInSection(1)<<endl;
+    cout<<iniFile.NumKeyCommentsInSection("Test Scrittura")<<endl;
+    cout<<iniFile.GetKeyComment("Prova",0)<<endl;
+    cout<<iniFile.NumHeaderComments()<<endl;
 
-    iniFile.AddSection("popopopoaiaiaiaia");
-    iniFile.AddKeyComment("popopopoaiaiaiaia","ciao lulz");
-    iniFile.NewHeaderComment("MA IO TENGO IL DIESEL");
-    iniFile.SetValue("popopopoaiaiaiaia","MAMMA MIA",50);
+    //TEST PARAMETRO IN SEZIONE
+    cout<<iniFile.GetValueName("Section 1",0)<<endl;
+
+    //TEST SCRITTURA SU FILE
+    iniFile.AddSection("Test Scrittura");
+    iniFile.AddKeyCommentInSection("Test Scrittura","Commento per la sezione Test Scrittura");
+    iniFile.NewHeaderComment("Questo invece è un commento di scrittura per l'header");
+    iniFile.SetValue("Test Scrittura","test_Write",50);
+    iniFile.SetValue(3,0,55); //Sovrascrive il dato 50 sopra in 55
+
+    //TEST CANCELLAZIONE DATI SU FILE
+    //iniFile.DeleteValue("drivers", "timer");
 
     iniFile.WriteFile();
 
-    for (int keyID = 0; keyID < iniFile.NumSections(); keyID++) {
-        cout<<"Section = " << iniFile.GetSection(keyID) << endl;
-        //for (int valueID = 0; valueID < iniFile.NumValues(keyID); valueID++)
-            //cout<<"ValueName = "<<iniFile.GetValueName(keyID,valueID)<<"Value = "<<iniFile.GetValue<string>(keyID,valueID)<<endl;
+    ///Se si vuole salvare un file con un altra estensione del tipo .sav
+    //iniFile.setPath(R"(C:\Users\sbruno\Documents\Samuel\Varie\Uni\Lab Programmazione\FileINIProject 1.2\Files\ini_test.sav)");
+
+    ///Output dell'intero file INI
+    for(int keyID = 0; keyID < iniFile.NumSections(); keyID++) {
+        cout<<"\nSection = " << iniFile.GetSection(keyID) << endl;
+        for (int valueID = 0; valueID < iniFile.NumValuesInSection(keyID); valueID++)
+            cout<<"ValueName = "<<iniFile.GetValueName(keyID,valueID)<<"Value = "<<iniFile.GetValue<string>(keyID,valueID)<<endl;
     }
     return 0;
 }

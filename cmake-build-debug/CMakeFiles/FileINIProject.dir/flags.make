@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_FLAGS = -g   -std=gnu++14
 
-CXX_DEFINES = 
+CXX_DEFINES = -DHAS_BOOST
 
-CXX_INCLUDES = 
+CXX_INCLUDES = -I/opt/boost_1_70_0 
 
