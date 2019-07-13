@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/FileINIProject.dir/main.cpp.o"
   "CMakeFiles/FileINIProject.dir/CIniFile.cpp.o"
+  "CMakeFiles/FileINIProject.dir/main.cpp.o"
   "FileINIProject.pdb"
   "FileINIProject"
 )

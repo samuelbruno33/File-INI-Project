@@ -13,7 +13,7 @@ int main()
     int ans=0,choice,type_choice,putComment,defVal;
     string putString,putKeys,insValue,jumpString;
 
-    CIniFile iniFile(R"(/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject 1.5/Files/ini_test.ini)");
+    CIniFile iniFile(R"(/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject/Files/ini_test.ini)");
     iniFile.ReadFile();
 
     while(ans==0)
@@ -208,7 +208,7 @@ int main()
             case 16:
                 cout<<"Scegli il nome che vuoi dare al tuo nuovo file: ";
                 getline(cin,putString);
-                //iniFile.setPath("C:\\Users\\sbruno\\Documents\\Samuel\\Varie\\Uni\\Lab Programmazione\\FileINIProject 1.5\\Files\\"<<putString<<"");
+                //iniFile.setPath("C:\\Users\\sbruno\\Documents\\Samuel\\Varie\\Uni\\Lab Programmazione\\FileINIProject\\Files\\"<<putString<<"");
                 cout<<"\nFile salvato correttamente!"<<endl;
                 break;
         }
