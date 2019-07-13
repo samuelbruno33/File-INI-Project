@@ -8,7 +8,7 @@
 
 int main() {
     ///Utilizzo la raw string per inserire correttamente la path e non usare le doppie barre laterali
-    CIniFile iniFile(R"(C:\Users\sbruno\Documents\Samuel\Varie\Uni\Lab Programmazione\FileINIProject 1.2\Files\ini_test.ini)");
+    CIniFile iniFile(R"(C:\Users\sbruno\Documents\Samuel\Varie\Uni\Lab Programmazione\FileINIProject\Files\ini_test.ini)");
     iniFile.ReadFile();
 
     //TEST LETTURA DATI DA FILE
@@ -46,7 +46,7 @@ int main() {
     iniFile.WriteFile();
 
     ///Se si vuole salvare un file con un altra estensione del tipo .sav
-    //iniFile.setPath(R"(C:\Users\sbruno\Documents\Samuel\Varie\Uni\Lab Programmazione\FileINIProject 1.2\Files\ini_test.sav)");
+    //iniFile.setPath(R"(C:\Users\sbruno\Documents\Samuel\Varie\Uni\Lab Programmazione\FileINIProject\Files\ini_test.sav)");
 
     ///Output dell'intero file INI
     for(int keyID = 0; keyID < iniFile.NumSections(); keyID++) {
