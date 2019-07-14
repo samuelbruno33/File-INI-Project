@@ -11,7 +11,7 @@ using namespace std;
 int main()
 {
     int ans=0,choice,type_choice,putComment,defVal;
-    string putString,putKeys,insValue,jumpString;
+    string putString,putKeys,insValue,jumpString,fileName = "ini_test.ini";
 
     CIniFile iniFile(R"(/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject/Files/ini_test.ini)");
     iniFile.ReadFile();
@@ -32,10 +32,12 @@ int main()
         cout<<"10)Elimina sezione\n";
         cout<<"11)Elimina un valore specifico in una sezione\n";
         cout<<"12)Elimina un commento specifico in una sezione\n";
-        cout<<"13)Elimina tutti i commenti d'intestazione\n";
-        cout<<"14)Elimina uno specifico commento d'intestazione\n";
-        cout<<"15)Visualizza contenuto del file INI\n";
-        cout<<"16)Salva file con un altro nome\n";
+        cout<<"13)Elimina tutti i commenti in una sezione\n";
+        cout<<"14)Elimina tutti i commenti d'intestazione\n";
+        cout<<"15)Elimina uno specifico commento d'intestazione\n";
+        cout<<"16)Visualizza contenuto del file INI\n";
+        cout<<"17)Salva file con un altro nome\n";
+        cout<<"18)Cambia la path del file\n";
         cout<<"\n";
 
         cout<<"Inserisci la tua scelta:";
@@ -201,15 +203,95 @@ int main()
                     cout<<";"<<iniFile.GetHeaderComment(putComment)<<endl;
                 break;
 
+            case 10:
+                cout<<"Inserisci il nome della sezione da eliminare: ";
+                getline(cin,putString);
+                iniFile.DeleteSection(putString);
+                iniFile.WriteFile();
+                break;
+
+            case 11:
+                cout<<"Inserisci il nome della sezione da eliminare: ";
+                getline(cin,putKeys);
+                cout<<"Inserisci il parametro di una sezione da eliminare: ";
+                getline(cin,putString);
+                iniFile.DeleteValueInSection(putKeys,putString);
+                iniFile.WriteFile();
+                break;
+
+            case 12:
+                cout<<"Inserisci il nome della sezione da eliminare: ";
+                getline(cin,putKeys);
+                cout<<"Inserisci il numero del commento da eliminare: ";
+                cin>>putComment;
+                if(cin.fail()){
+                    cout<<"Hai inserito un input sbagliato!";
+                    cin.clear();
+                    ans=1;
+                    break;
+                }
+                else if(putComment > iniFile.NumHeaderComments())
+                    cout<<"Hai inserito un numero di commento che non esiste!"<<endl;
+                else{
+                    iniFile.DeleteCommentInSection(putKeys,putComment);
+                    iniFile.WriteFile();
+                }
+                break;
+
+            case 13:
+                cout<<"Inserisci il nome della sezione da cui verranno eliminati i commenti: ";
+                getline(cin,putKeys);
+                iniFile.DeleteAllCommentsInSection(putKeys);
+                iniFile.WriteFile();
+                break;
+
+            case 14:
+                iniFile.DeleteHeaderComments();
+                iniFile.WriteFile();
+                break;
+
             case 15:
-                iniFile.toString();
+                cout<<"Inserisci il numero del commento dell'intestazione da eliminare: ";
+                cin>>putComment;
+                if(cin.fail()){
+                    cout<<"Hai inserito un input sbagliato!";
+                    cin.clear();
+                    ans=1;
+                    break;
+                }
+                else if(putComment > iniFile.NumHeaderComments())
+                    cout<<"Hai inserito un numero di commento che non esiste!"<<endl;
+                else
+                {
+                    iniFile.DeleteHeaderComment(putComment);
+                    iniFile.WriteFile();
+                }
                 break;
 
             case 16:
+                iniFile.toString();
+                break;
+
+            case 17:
                 cout<<"Scegli il nome che vuoi dare al tuo nuovo file: ";
                 getline(cin,putString);
-                //iniFile.setPath("C:\\Users\\sbruno\\Documents\\Samuel\\Varie\\Uni\\Lab Programmazione\\FileINIProject\\Files\\"<<putString<<"");
+                cout<<"Scegli l'estensione da dare al tuo nuovo file: ";
+                getline(cin,putKeys);
+                fileName = putString + "." + putKeys;
+                cout<<"\nNome del file: "<<fileName<<endl;
+                iniFile.setPath("/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject/Files/"+fileName);
+                iniFile.WriteFile();
                 cout<<"\nFile salvato correttamente!"<<endl;
+                break;
+
+            case 18:
+                //Path Lavoro: C:\Users\sbruno\Documents\Samuel\Varie\Uni\Lab Programmazione\FileINIProject\Files\ini_test.ini
+                cout<<"Inserisci la path dove è presente il file. Non bisogna inserire nella path anche il nome del file ma solo la sua locazione.";
+                cout<<"Inserisci: ";
+                getline(cin,putString);
+                iniFile.setPath(putString + "/" + fileName);
+                iniFile.WriteFile();
+                cout<<"\nPath cambiata correttamente!"<<endl;
                 break;
         }
     }
