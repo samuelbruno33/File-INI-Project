@@ -1,1 +1,1 @@
-/usr/bin/c++  -g   CMakeFiles/FileINIProject.dir/CIniFile.cpp.o CMakeFiles/FileINIProject.dir/main.cpp.o  -o FileINIProject 
+/usr/bin/c++   -static-libstdc++ -static-libgcc -g   CMakeFiles/FileINIProject.dir/CIniFile.cpp.o CMakeFiles/FileINIProject.dir/main.cpp.o  -o FileINIProject 

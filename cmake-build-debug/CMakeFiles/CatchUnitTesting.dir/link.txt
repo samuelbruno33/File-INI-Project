@@ -1,1 +1,1 @@
-/usr/bin/c++  -g   CMakeFiles/CatchUnitTesting.dir/CIniFile.cpp.o CMakeFiles/CatchUnitTesting.dir/TestCIniFile.cpp.o  -o CatchUnitTesting 
+/usr/bin/c++   -static-libstdc++ -static-libgcc -g   CMakeFiles/CatchUnitTesting.dir/CIniFile.cpp.o CMakeFiles/CatchUnitTesting.dir/TestCIniFile.cpp.o  -o CatchUnitTesting 
