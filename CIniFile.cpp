@@ -2,10 +2,8 @@
 // Created by samuel on 05/07/19.
 //
 
-#include <string>
-#include <vector>
-#include <iostream>
 #include <fstream>
+#include <exception>
 #include "CIniFile.h"
 
 bool CIniFile::ReadFile()
@@ -124,10 +122,10 @@ string CIniFile::GetSection(int const &keyID) const
         return "";
 }
 
-string CIniFile::GetValuesInSection(int const &keyID)
+void CIniFile::GetValuesInSection(int const &keyID)
 {
     if(keyID == noID)
-        return "ID non trovato!";
+        cout<<"ID non trovato!"<<endl;
 
     cout<<"\nSezione = " << GetSection(keyID) << endl;
     for (int valueID = 0; valueID < NumKeyValuesInSection(keyID); valueID++)
@@ -176,7 +174,7 @@ string CIniFile::GetHeaderComment(int const &commentID) const
     return "";
 }
 
-string CIniFile::GetAllHeaderComments()
+void CIniFile::GetAllHeaderComments()
 {
     for(int commentID = 0; commentID < NumHeaderComments(); commentID++)
         cout<<";"<<GetHeaderComment(commentID)<<endl;
@@ -229,7 +227,7 @@ string CIniFile::GetKeyComment(string const &keyName, int const &commentID) cons
     return GetKeyComment(keyID, commentID);
 }
 
-bool CIniFile::DeleteValueInSection(string const keyName, string const valueName)
+bool CIniFile::DeleteValueInSection(string const &keyName, string const &valueName)
 {
     int keyID = FindSection(keyName);
     if(keyID == noID)
@@ -270,7 +268,7 @@ bool CIniFile::DeleteHeaderComment(int commentID)
     return false;
 }
 
-bool CIniFile::DeleteCommentInSection(int const keyID, int const commentID)
+bool CIniFile::DeleteCommentInSection(int const &keyID, int const &commentID)
 {
     if(keyID < keys.size() && commentID < keys[keyID].comment.size()) {
         auto commentPos = keys[keyID].comment.begin() + commentID;
@@ -280,7 +278,7 @@ bool CIniFile::DeleteCommentInSection(int const keyID, int const commentID)
     return false;
 }
 
-bool CIniFile::DeleteCommentInSection(string const keyName, int const commentID)
+bool CIniFile::DeleteCommentInSection(string const &keyName, int const &commentID)
 {
     int keyID = FindSection(keyName);
     if(keyID == noID)
@@ -288,7 +286,7 @@ bool CIniFile::DeleteCommentInSection(string const keyName, int const commentID)
     return DeleteCommentInSection(keyID, commentID);
 }
 
-bool CIniFile::DeleteAllCommentsInSection(int const keyID)
+bool CIniFile::DeleteAllCommentsInSection(int const &keyID)
 {
     if(keyID < keys.size()) {
         keys[keyID].comment.clear();
@@ -297,7 +295,7 @@ bool CIniFile::DeleteAllCommentsInSection(int const keyID)
     return false;
 }
 
-bool CIniFile::DeleteAllCommentsInSection(string const keyName)
+bool CIniFile::DeleteAllCommentsInSection(string const &keyName)
 {
     int keyID = FindSection(keyName);
     if(keyID == noID)
@@ -305,75 +303,125 @@ bool CIniFile::DeleteAllCommentsInSection(string const keyName)
     return DeleteAllCommentsInSection(keyID);
 }
 
-void CIniFile::Type_Choice_SetValue(int type_choice, string putKeys, string putString, string insValue)
+void CIniFile::Type_Choice_SetValue(int type_choice, string const &putKeys, string const &putString, string insValue)
 {
     try
     {
         if(type_choice == 1)
-            SetValue(putKeys,putString,boost::lexical_cast<string>(insValue));
+            SetValue(putKeys,putString,insValue);
         else if(type_choice == 2)
-            SetValue(putKeys,putString,boost::lexical_cast<int>(insValue));
+            SetValue(putKeys,putString,insValue);
         else if(type_choice == 3)
-            SetValue(putKeys,putString,boost::lexical_cast<float>(insValue));
+            SetValue(putKeys,putString,insValue);
         else if(type_choice == 4){
             insValue = getBoolValue(insValue);
-            SetValue(putKeys,putString,boost::lexical_cast<bool>(insValue));
+            if(insValue != "2")
+                SetValue(putKeys,putString,insValue);
         }
         else
             cout<<"Hai inserito un codice di tipo della variabile sbagliato!"<<endl;
     }
-    catch (boost::bad_lexical_cast&) {
-        std::cout << "Conversione fallita! Proabile errore di scelta di tipo del valore." << std::endl;
+    catch(exception& e) {
+        cout << "Conversione fallita! Proabile errore di scelta di tipo del valore." << endl;
+        cout <<"Eccezione lanciata: "<<e.what()<<endl;
     }
 }
 
-void CIniFile::Type_Choice_GetValue(int type_choice, string putKeys, string putString)
+void CIniFile::Type_Choice_GetValue(int type_choice, string const &putKeys, string const &putString, string insValue)
 {
     try
     {
         if(type_choice == 1)
-            cout<<"Valore: "<<GetValue<string>(putKeys,putString)<<endl;
+            cout<<"Valore: "<<GetValue(putKeys,putString,insValue)<<endl;
         else if(type_choice == 2)
-            cout<<"Valore: "<<GetValue<int>(putKeys,putString)<<endl;
+            cout<<"Valore: "<<GetValue(putKeys,putString,stoi(insValue))<<endl;
         else if(type_choice == 3)
-            cout<<"Valore: "<<GetValue<float>(putKeys,putString)<<endl;
+            cout<<"Valore: "<<GetValue(putKeys,putString,stof(insValue))<<endl;
         else if(type_choice == 4)
-            cout<<"Valore: "<<GetValue<bool>(putKeys,putString)<<endl;
-        else
-            cout<<"Hai inserito un codice di tipo della variabile sbagliato!"<<endl;
-    }
-    catch (boost::bad_lexical_cast&) {
-        std::cout << "Conversione fallita! Proabile errore di scelta di tipo del valore." << std::endl;
-    }
-}
-
-void CIniFile::Type_Choice_GetValue_DefValue(int type_choice, string putKeys, string putString, string insValue)
-{
-    try
-    {
-        if(type_choice == 1)
-            cout<<"Valore: "<<GetValue(putKeys,putString,boost::lexical_cast<string>(insValue))<<endl;
-        else if(type_choice == 2)
-            cout<<"Valore: "<<GetValue(putKeys,putString,boost::lexical_cast<int>(insValue))<<endl;
-        else if(type_choice == 3)
-            cout<<"Valore: "<<GetValue(putKeys,putString,boost::lexical_cast<float>(insValue))<<endl;
-        else if(type_choice == 4){
+        {
             insValue = getBoolValue(insValue);
-            cout<<"Valore: "<<GetValue(putKeys,putString,boost::lexical_cast<bool>(insValue))<<endl;
+            int insBool = stoi(insValue);
+            if(insBool != 2)
+                cout<<"Valore: "<<GetValue(putKeys,putString,boost::lexical_cast<bool>(insBool))<<endl;
         }
         else
             cout<<"Hai inserito un codice di tipo della variabile sbagliato!"<<endl;
     }
-    catch (boost::bad_lexical_cast&) {
-        std::cout << "Conversione fallita! Proabile errore di scelta di tipo del valore." << std::endl;
+    catch(exception& e) {
+        cout << "Conversione fallita! Proabile errore di scelta di tipo del valore." << endl;
+        cout <<"Eccezione lanciata: "<<e.what()<<endl;
     }
 }
 
 void CIniFile::toString()
 {
+    GetAllHeaderComments();
+
     for(int keyID = 0; keyID < NumSections(); keyID++) {
         cout<<"\nSezione = " << GetSection(keyID) << endl;
         for (int valueID = 0; valueID < NumKeyValuesInSection(keyID); valueID++)
             cout<<"Nome Valore = "<<GetValueName(keyID,valueID)<<", Valore = "<<GetValue<string>(keyID,valueID)<<endl;
     }
+}
+
+void CIniFile::RenameFileName()
+{
+    string putKeys, putString, newFileName;
+
+    cout << "Scegli il nome che vuoi dare al file (senza estensione): ";
+    getline(cin, putString);
+    cout << "Scegli l'estensione da dare al file: ";
+    getline(cin, putKeys);
+    newFileName = putString + "." + putKeys;
+
+    size_t count = getPath().find_last_of("/");
+    string initPath = getPath().substr(0,count);
+
+    string newPath = initPath + "/" + newFileName;
+    string oldPath = initPath + "/" + getFileName();
+    rename(oldPath.c_str(),newPath.c_str());
+    setFileName(newFileName);
+    setPath(newPath);
+    cout << "Nome del file: " << getFileName() << endl;
+}
+
+void CIniFile::ChangeFileName()
+{
+    string putKeys, putString, newFileName;
+
+    cout << "Scegli il nome che vuoi dare al file (senza estensione): ";
+    getline(cin, putString);
+    cout << "Scegli l'estensione da dare al file: ";
+    getline(cin, putKeys);
+    newFileName = putString + "." + putKeys;
+    setFileName(newFileName);
+    cout << "Nome del file: " << getFileName() << endl;
+}
+
+string CIniFile::ChangePath()
+{
+    int ins;
+    string putPath,jumpString;
+
+    cout<<"\nNome del file corrente: "<<getFileName()<<"\n"<<endl;
+    cout<<"Vuoi anche cambiare il nome del file? Se il nome del file su cui vuoi lavorare si chiama in maniera differente allora è consigliato cambiare il nome."<<endl;
+    cout<<"Inserisci scelta <0-no 1-si>: ";
+    cin>>ins;
+    getline(cin, jumpString);
+    if(cin.fail() || ins >= 2){
+        cout<<"Hai inserito un input sbagliato!"<<endl;
+        cin.clear();
+        getline(cin, jumpString);
+        return "";
+    }
+    else if(ins == 1)
+        ChangeFileName();
+
+    cout<<"Inserisci la path dove è presente il file. Non bisogna inserire nella path anche il nome del file ma solo la sua locazione."<<endl;
+    cout<<"Path: ";
+    getline(cin,putPath);
+    setPath(putPath + "/" + getFileName());
+    cout<<getPath()<<endl;
+    cout<<"\nPath cambiata correttamente!"<<endl;
+    return putPath;
 }

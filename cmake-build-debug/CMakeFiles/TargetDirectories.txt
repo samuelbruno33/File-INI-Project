@@ -1,3 +1,4 @@
 /home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject/cmake-build-debug/CMakeFiles/FileINIProject.dir
 /home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject/cmake-build-debug/CMakeFiles/CatchUnitTesting.dir
+/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject/cmake-build-debug/CMakeFiles/FileINIProject.dir

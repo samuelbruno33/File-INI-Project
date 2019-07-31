@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/CatchUnitTesting.dir/CIniFile.cpp.o CMakeFiles/CatchUnitTesting.dir/TestCIniFile.cpp.o  -o CatchUnitTesting 

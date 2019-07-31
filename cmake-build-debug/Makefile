@@ -111,6 +111,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named CatchUnitTesting
+
+# Build rule for target.
+CatchUnitTesting: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 CatchUnitTesting
+.PHONY : CatchUnitTesting
+
+# fast build rule for target.
+CatchUnitTesting/fast:
+	$(MAKE) -f CMakeFiles/CatchUnitTesting.dir/build.make CMakeFiles/CatchUnitTesting.dir/build
+.PHONY : CatchUnitTesting/fast
+
+#=============================================================================
 # Target rules for targets named FileINIProject
 
 # Build rule for target.
@@ -129,6 +142,7 @@ CIniFile.o: CIniFile.cpp.o
 
 # target to build an object file
 CIniFile.cpp.o:
+	$(MAKE) -f CMakeFiles/CatchUnitTesting.dir/build.make CMakeFiles/CatchUnitTesting.dir/CIniFile.cpp.o
 	$(MAKE) -f CMakeFiles/FileINIProject.dir/build.make CMakeFiles/FileINIProject.dir/CIniFile.cpp.o
 .PHONY : CIniFile.cpp.o
 
@@ -138,6 +152,7 @@ CIniFile.i: CIniFile.cpp.i
 
 # target to preprocess a source file
 CIniFile.cpp.i:
+	$(MAKE) -f CMakeFiles/CatchUnitTesting.dir/build.make CMakeFiles/CatchUnitTesting.dir/CIniFile.cpp.i
 	$(MAKE) -f CMakeFiles/FileINIProject.dir/build.make CMakeFiles/FileINIProject.dir/CIniFile.cpp.i
 .PHONY : CIniFile.cpp.i
 
@@ -147,8 +162,36 @@ CIniFile.s: CIniFile.cpp.s
 
 # target to generate assembly for a file
 CIniFile.cpp.s:
+	$(MAKE) -f CMakeFiles/CatchUnitTesting.dir/build.make CMakeFiles/CatchUnitTesting.dir/CIniFile.cpp.s
 	$(MAKE) -f CMakeFiles/FileINIProject.dir/build.make CMakeFiles/FileINIProject.dir/CIniFile.cpp.s
 .PHONY : CIniFile.cpp.s
+
+TestCIniFile.o: TestCIniFile.cpp.o
+
+.PHONY : TestCIniFile.o
+
+# target to build an object file
+TestCIniFile.cpp.o:
+	$(MAKE) -f CMakeFiles/CatchUnitTesting.dir/build.make CMakeFiles/CatchUnitTesting.dir/TestCIniFile.cpp.o
+.PHONY : TestCIniFile.cpp.o
+
+TestCIniFile.i: TestCIniFile.cpp.i
+
+.PHONY : TestCIniFile.i
+
+# target to preprocess a source file
+TestCIniFile.cpp.i:
+	$(MAKE) -f CMakeFiles/CatchUnitTesting.dir/build.make CMakeFiles/CatchUnitTesting.dir/TestCIniFile.cpp.i
+.PHONY : TestCIniFile.cpp.i
+
+TestCIniFile.s: TestCIniFile.cpp.s
+
+.PHONY : TestCIniFile.s
+
+# target to generate assembly for a file
+TestCIniFile.cpp.s:
+	$(MAKE) -f CMakeFiles/CatchUnitTesting.dir/build.make CMakeFiles/CatchUnitTesting.dir/TestCIniFile.cpp.s
+.PHONY : TestCIniFile.cpp.s
 
 main.o: main.cpp.o
 
@@ -184,11 +227,15 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
-	@echo "... FileINIProject"
 	@echo "... edit_cache"
+	@echo "... CatchUnitTesting"
+	@echo "... FileINIProject"
 	@echo "... CIniFile.o"
 	@echo "... CIniFile.i"
 	@echo "... CIniFile.s"
+	@echo "... TestCIniFile.o"
+	@echo "... TestCIniFile.i"
+	@echo "... TestCIniFile.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

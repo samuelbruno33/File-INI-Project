@@ -2,6 +2,7 @@
 // Created by samuel on 05/07/19.
 //
 
+#include <iostream>
 #include <string>
 #include <vector>
 #include <typeinfo>
@@ -17,22 +18,44 @@ class CIniFile
 {
 public:
     enum error{noID = -1};
-
-    explicit CIniFile(string const initialPath = "") : defaultPath(initialPath) {}
+    explicit CIniFile(string initialPath = "/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject/Files", string fn = "ini_file.ini") : fileName(fn){
+        defaultPath = initialPath + "/" + fileName;
+    }
     virtual ~CIniFile() = default;
+
+    /// Funzioni di lettura e scrittura
 
     bool ReadFile();
     bool WriteFile();
+
+    /// Funzioni che riguardano le path e il nome del file
 
     void setPath(string newPath)
     {
         defaultPath = newPath;
     }
 
-    string getPath() const
+    const string getPath() const
     {
         return defaultPath;
     }
+
+    const string &getFileName() const {
+        return fileName;
+    }
+
+    void setFileName(const string &fileName) {
+        CIniFile::fileName = fileName;
+    }
+
+    //Funzione che viene utilizzata per cambiare la path del file
+    string ChangePath();
+
+    //Funzione che viene utilizzata per cambiare il nome del file insieme alla path
+    void ChangeFileName();
+
+    //Funzione che viene utilizzata per rinominare il file
+    void RenameFileName();
 
     ///Funzioni che riguardano le sezioni
 
@@ -52,7 +75,7 @@ public:
     string GetSection(int const &keyID) const;
 
     //Stampa il nome della sezione con i suoi relativi parametri e valori
-    string GetValuesInSection(int const &keyID);
+    void GetValuesInSection(int const &keyID);
 
     //Ritorna il numero dei parametri presenti in una sezione
     int NumKeyValuesInSection(int const &keyID);
@@ -83,15 +106,15 @@ public:
     string GetKeyComment(string const &keyName, int const &commentID) const;
 
     // Elimina un parametro e il corrispondente valore presente in una determinata sezione
-    bool DeleteValueInSection(string const keyName, string const valueName);
+    bool DeleteValueInSection(string const &keyName, const string &valueName);
 
     // Elimina un commento presente nella sezione
-    bool DeleteCommentInSection(int const keyID, int const commentID);
-    bool DeleteCommentInSection(string const keyName, int const commentID);
+    bool DeleteCommentInSection(int const &keyID, int const &commentID);
+    bool DeleteCommentInSection(string const &keyName, int const &commentID);
 
     // Elimina tutti i commenti presenti nella sezione
-    bool DeleteAllCommentsInSection(int const keyID);
-    bool DeleteAllCommentsInSection(string const keyName);
+    bool DeleteAllCommentsInSection(int const &keyID);
+    bool DeleteAllCommentsInSection(string const &keyName);
 
     ///Funzioni che riguardano i commenti d'intestazione
 
@@ -106,36 +129,27 @@ public:
 
     // Ritorna un commento specifico presente nell'intestazione
     string GetHeaderComment(int const &commentID) const;
-    string GetAllHeaderComments();
+
+    // Ritorna tutti i commenti d'intestazione
+    void GetAllHeaderComments();
 
     // Elimina un singolo commento d'intestazione
     bool DeleteHeaderComment(int commentID);
 
     // Elimina tutti i commenti d'intestazione
-    void DeleteHeaderComments()
+    void DeleteAllHeaderComments()
     {
         comments.clear();
     }
 
-    ///Funzioni che servono per fare il Set e il Get dei valori delle chiavi all'interno del file INI
+    ///Funzioni che servono per aggiungere un valore o visualizzarlo all'interno della sezione
 
     //Funzione che serve per determinare il tipo di dato da inserire nel file INI
-    void Type_Choice_SetValue(int type_choice, string putKeys, string putString, string insValue);
-    void Type_Choice_GetValue(int type_choice, string putKeys, string putString);
-    void Type_Choice_GetValue_DefValue(int type_choice, string putKeys, string putString, string insValue);
+    void Type_Choice_SetValue(int type_choice, string const &putKeys, string const &putString, string insValue);
+    void Type_Choice_GetValue(int type_choice, string const &putKeys, string const &putString, string insValue);
 
     //Setta i valori delle chiavi all'interno del file
-    template<typename T>
-    bool SetValue(int const &keyID, int const &valueID, T val){
-        string value = boost::lexical_cast<string>(val);
-        if(keyID < keys.size() && valueID < keys[keyID].names.size())
-            keys[keyID].value[valueID] = value;
-        return false;
-    }
-
-    template<typename T>
-    bool SetValue(string const &keyName, string const &valueName, T val, bool const &create = true){
-        string value = boost::lexical_cast<string>(val);
+    bool SetValue(string const &keyName, string const &valueName, string value, bool const &create = true){
         int keyID = FindSection(keyName);
         if(keyID == noID) {
             if(create)
@@ -159,32 +173,42 @@ public:
     //Fa ritornare i valori delle chiavi presenti all'interno del file
     template<typename T>
     T GetValue(int const &keyID, int const &valueID, T const defValue = T()) {
-        if(keyID < keys.size() && valueID < keys[keyID].names.size()){
+        if (keyID < keys.size() && valueID < keys[keyID].names.size()) {
             string ret = keys[keyID].value[valueID];
-            if(typeid(defValue) == typeid(bool)) {
-                ret = getBoolValue(ret);
+            if(typeid(T) == typeid(bool)) {
+                int val = stoi(ret);
+                return boost::lexical_cast<T>(val);
             }
-            return boost::lexical_cast<T>(ret);
+            else if(typeid(T) == typeid(int))
+                return boost::lexical_cast<T>(stoi(ret));
+            else if(typeid(T) == typeid(float))
+                return boost::lexical_cast<T>(stof(ret));
+            else
+                return boost::lexical_cast<T>(ret);
         }
-        else
-            return defValue;
     }
 
     template<typename T>
     T GetValue(string const &keyName, string const &valueName, T const defValue = T()) {
         int keyID = FindSection(keyName);
-        if (keyID == noID){
+        if(keyID == noID)
             return defValue;
-        }
+
         int valueID = FindValue(keyID, valueName);
-        if (valueID == noID){
+        if(valueID == noID)
             return defValue;
-        }
+
         string ret = keys[keyID].value[valueID];
-        if(typeid(defValue) == typeid(bool)) {
-            ret = getBoolValue(ret);
+        if(typeid(T) == typeid(bool)) {
+            int val = stoi(ret);
+            return boost::lexical_cast<T>(val);
         }
-        return boost::lexical_cast<T>(ret);
+        else if(typeid(T) == typeid(int))
+            return boost::lexical_cast<T>(stoi(ret));
+        else if(typeid(T) == typeid(float))
+            return boost::lexical_cast<T>(stof(ret));
+        else
+            return boost::lexical_cast<T>(ret);
     }
 
     //Controllo del tipo Booleano nel ritorno del valore nella macro-funzione getValue.
@@ -193,12 +217,14 @@ public:
     static string getBoolValue(string ret){
         //Valori accettati per ritornare TRUE '1', 'yes', 'true' e 'on',
         //invece '0', 'no', 'false' e 'off' ritornano quindi FALSE.
-        if(ret == "1" || ret == "yes" || ret == "true" || ret == "on")
+        if(ret.compare("1") == 0 || ret.compare("yes") == 0 || ret.compare("true") == 0 || ret.compare("on")== 0 )
             ret = "1";
-        else if(ret == "0" || ret == "no" || ret == "false" || ret == "off")
+        else if(ret.compare("0")== 0  || ret.compare("no")== 0  || ret.compare("false")== 0  || ret.compare("off")== 0 )
             ret = "0";
-        else
-            ret = "Errore nell'inserimento del valore booleano.";
+        else{
+            cout<<"Errore nell'inserimento del valore booleano."<<endl;
+            ret = "2";
+        }
         return ret;
     }
 
@@ -207,6 +233,7 @@ public:
 
 private:
     string defaultPath;
+    string fileName;
     vector<string> section;
     vector<string> comments;
     vector<Key> keys;
