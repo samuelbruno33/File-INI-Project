@@ -68,7 +68,7 @@ redo_label:
         cin>>choice;
 
         //Salta la riga per problemi di inserimento del carattere con il cin, poichè una volta preso l'input (di un solo carattere
-        //alla volta), il cin a fine riga di input mette uno /n che sballa la visualizzazione e l'input successivi presenti nei case.
+        //alla volta), il cin a fine riga di input mette uno /n che sballa la visualizzazione e gli input successivi presenti nei case.
         getline(cin, jumpString);
 
         switch(choice)

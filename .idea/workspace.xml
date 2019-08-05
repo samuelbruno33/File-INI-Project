@@ -2,8 +2,8 @@
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
     <generated>
-      <config projectName="FileINIProject" targetName="CatchUnitTesting" />
       <config projectName="FileINIProject" targetName="FileINIProject" />
+      <config projectName="FileINIProject" targetName="CatchUnitTesting" />
     </generated>
   </component>
   <component name="CMakeSettings" AUTO_RELOAD="true">
@@ -12,7 +12,16 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9c1dd91a-1323-4afa-9073-3a9b77728446" name="Default Changelist" comment="" />
+    <list default="true" id="9c1dd91a-1323-4afa-9073-3a9b77728446" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CIniFile.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/CIniFile.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CIniFile.h" beforeDir="false" afterPath="$PROJECT_DIR$/CIniFile.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/FileINIProject.dir/CIniFile.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/FileINIProject.dir/CIniFile.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/FileINIProject.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/FileINIProject.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/FileINIProject.dir/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/FileINIProject.dir/main.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/FileINIProject.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/FileINIProject.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,7 +145,8 @@
       <workItem from="1564579221512" duration="6017000" />
       <workItem from="1564597468085" duration="2615000" />
       <workItem from="1564603527827" duration="1546000" />
-      <workItem from="1564990371292" duration="7809000" />
+      <workItem from="1564990371292" duration="7934000" />
+      <workItem from="1565009151601" duration="4119000" />
     </task>
     <task id="LOCAL-00001" summary="Prima versione del progetto lettura/scrittura su File INI.">
       <created>1563023137275</created>
@@ -208,7 +218,14 @@
       <option name="project" value="LOCAL" />
       <updated>1565004349451</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Correzione di diversi bug del programma con aggiunta di modifiche ai file di test. Corretto inoltre lo unit testing per il programma e ottimizzato correttamente il supporto alla libreria esterna BOOST.">
+      <created>1565004941437</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1565004941437</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

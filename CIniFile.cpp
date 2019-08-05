@@ -158,7 +158,7 @@ string CIniFile::GetValueName(string const &keyName, int const &valueID) const
 {
     int keyID = FindSection(keyName);
     if(keyID == noID)
-        return "";
+        return "ID non trovato!";
     return GetValueName(keyID, valueID);
 }
 
@@ -223,7 +223,7 @@ string CIniFile::GetKeyComment(string const &keyName, int const &commentID) cons
 {
     int keyID = FindSection(keyName);
     if (keyID == noID)
-        return "";
+        return "ID non trovato!";
     return GetKeyComment(keyID, commentID);
 }
 
@@ -244,7 +244,7 @@ bool CIniFile::DeleteValueInSection(string const &keyName, string const &valueNa
     return true;
 }
 
-bool CIniFile::DeleteSection(string const keyName)
+bool CIniFile::DeleteSection(string const& keyName)
 {
     int keyID = FindSection(keyName);
     if(keyID == noID)
@@ -327,6 +327,27 @@ void CIniFile::Type_Choice_SetValue(int type_choice, string const &putKeys, stri
     }
 }
 
+bool CIniFile::SetValue(string const &keyName, string const &valueName, const string& value, bool const &create){
+    int keyID = FindSection(keyName);
+    if(keyID == noID) {
+        if(create)
+            keyID = AddSection(keyName);
+        else
+            return false;
+    }
+    int valueID = FindValue(keyID, valueName);
+    if(valueID == noID){
+        if(!create)
+            return false;
+        keys[keyID].names.resize(keys[keyID].names.size() + 1, valueName);
+        keys[keyID].value.resize(keys[keyID].value.size() + 1, value);
+    }
+    else
+        keys[keyID].value[valueID] = value;
+
+    return true;
+}
+
 void CIniFile::Type_Choice_GetValue(int type_choice, string const &putKeys, string const &putString, string insValue)
 {
     try
@@ -364,11 +385,11 @@ void CIniFile::toString()
     }
 }
 
-void CIniFile::RenameFileName(string putKeys, string putString)
+void CIniFile::RenameFileName(const string& putString, const string& putKeys)
 {
     string newFileName = putString + "." + putKeys;
 
-    size_t count = getPath().find_last_of("/");
+    size_t count = getPath().find_last_of('/');
     string initPath = getPath().substr(0,count);
 
     string newPath = initPath + "/" + newFileName;
@@ -383,9 +404,9 @@ void CIniFile::ChangeFileName()
 {
     string putKeys, putString, newFileName;
 
-    cout << "Scegli il nome che vuoi dare al file (senza estensione): ";
+    cout << "Inserisci il nome del file su cui lavorare (senza estensione): ";
     getline(cin, putString);
-    cout << "Scegli l'estensione da dare al file: ";
+    cout << "Inserisci l'estensione del file: ";
     getline(cin, putKeys);
     newFileName = putString + "." + putKeys;
     setFileName(newFileName);
@@ -398,7 +419,7 @@ string CIniFile::ChangePath()
     string putPath,jumpString;
 
     cout<<"\nNome del file corrente: "<<getFileName()<<"\n"<<endl;
-    cout<<"Vuoi anche cambiare il nome del file? Se il nome del file su cui vuoi lavorare si chiama in maniera differente allora è consigliato cambiare il nome."<<endl;
+    cout<<"Vuoi cambiare file di lavoro ?"<<endl;
     cout<<"Inserisci scelta <0-no 1-si>: ";
     cin>>ins;
     getline(cin, jumpString);

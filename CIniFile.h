@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <string>
+#include <utility>
 #include <vector>
 #include <typeinfo>
 #include <boost/lexical_cast.hpp>
@@ -18,8 +19,7 @@ class CIniFile
 {
 public:
     enum error{noID = -1};
-    //home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject/Files
-    explicit CIniFile(string initialPath = "C:/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/FileINIProject/Files", string fn = "ini_file.ini") : fileName(fn){
+    explicit CIniFile(const string& initialPath = "/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject/Files", string fn = "ini_file.ini") : fileName(std::move(fn)){
         defaultPath = initialPath + "/" + fileName;
     }
     virtual ~CIniFile() = default;
@@ -33,10 +33,10 @@ public:
 
     void setPath(string newPath)
     {
-        defaultPath = newPath;
+        defaultPath = std::move(newPath);
     }
 
-    const string getPath() const
+    string getPath() const
     {
         return defaultPath;
     }
@@ -45,8 +45,8 @@ public:
         return fileName;
     }
 
-    void setFileName(const string &fileName) {
-        CIniFile::fileName = fileName;
+    void setFileName(const string &fn) {
+        CIniFile::fileName = fn;
     }
 
     //Funzione che viene utilizzata per cambiare la path del file
@@ -56,7 +56,7 @@ public:
     void ChangeFileName();
 
     //Funzione che viene utilizzata per rinominare il file
-    void RenameFileName(string putKeys, string putString);
+    void RenameFileName(const string& putString, const string& putKeys);
 
     ///Funzioni che riguardano le sezioni
 
@@ -83,7 +83,7 @@ public:
     int NumKeyValuesInSection(string const &keyName);
 
     // Elimina un intera sezione e i suoi relativi parametri
-    bool DeleteSection(string keyName);
+    bool DeleteSection(const string& keyName);
 
     ///Funzioni che riguardano le chiavi all'interno delle sezioni
 
@@ -150,26 +150,7 @@ public:
     void Type_Choice_GetValue(int type_choice, string const &putKeys, string const &putString, string insValue);
 
     //Setta i valori delle chiavi all'interno del file
-    bool SetValue(string const &keyName, string const &valueName, string value, bool const &create = true){
-        int keyID = FindSection(keyName);
-        if(keyID == noID) {
-            if(create)
-                keyID = AddSection(keyName);
-            else
-                return false;
-        }
-        int valueID = FindValue(keyID, valueName);
-        if(valueID == noID){
-            if(!create)
-                return false;
-            keys[keyID].names.resize(keys[keyID].names.size() + 1, valueName);
-            keys[keyID].value.resize(keys[keyID].value.size() + 1, value);
-        }
-        else
-            keys[keyID].value[valueID] = value;
-
-        return true;
-    }
+    bool SetValue(string const &keyName, string const &valueName, const string& value, bool const &create = true);
 
     //Fa ritornare i valori delle chiavi presenti all'interno del file
     template<typename T>
@@ -212,10 +193,10 @@ public:
         if(typeid(T) == typeid(bool)) {
             ret = getBoolValue(ret);
             int val = stoi(ret);
-            if(val == 2)
-               goto boolean_label;
-           else
-            return boost::lexical_cast<T>(val);
+            if (val != 2)
+                return boost::lexical_cast<T>(val);
+            else
+                goto boolean_label;
         }
         else if(typeid(T) == typeid(int))
             return boost::lexical_cast<T>(stoi(ret));
@@ -236,9 +217,9 @@ public:
     static string getBoolValue(string ret){
         //Valori accettati per ritornare TRUE '1', 'yes', 'true' e 'on',
         //invece '0', 'no', 'false' e 'off' ritornano quindi FALSE.
-        if(ret.compare("1") == 0 || ret.compare("yes") == 0 || ret.compare("true") == 0 || ret.compare("on")== 0 )
+        if(ret == "1" || ret == "yes" || ret == "true" || ret == "on" )
             ret = "1";
-        else if(ret.compare("0")== 0  || ret.compare("no")== 0  || ret.compare("false")== 0  || ret.compare("off")== 0 )
+        else if(ret == "0"  || ret == "no"  || ret == "false"  || ret == "off" )
             ret = "0";
         else{
             cout<<"Errore nell'inserimento del valore booleano."<<endl;
