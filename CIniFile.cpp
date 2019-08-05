@@ -86,23 +86,67 @@ bool CIniFile::WriteFile()
     return true;
 }
 
+void CIniFile::ChangeFileName()
+{
+    string putKeys, putString, newFileName;
+
+    cout << "Inserisci il nome del file su cui lavorare (senza estensione): ";
+    getline(cin, putString);
+    cout << "Inserisci l'estensione del file: ";
+    getline(cin, putKeys);
+    newFileName = putString + "." + putKeys;
+    setFileName(newFileName);
+    cout << "Nome del file: " << getFileName() << endl;
+}
+
+string CIniFile::ChangePath()
+{
+    int ins = 0;
+    string putPath,jumpString;
+
+    cout<<"\nNome del file corrente: "<<getFileName()<<"\n"<<endl;
+    cout<<"Vuoi cambiare file di lavoro ?"<<endl;
+    cout<<"Inserisci scelta <0-no 1-si>: ";
+    cin>>ins;
+    getline(cin, jumpString);
+    if(cin.fail() || ins >= 2){
+        cout<<"Hai inserito un input sbagliato!"<<endl;
+        cin.clear();
+        getline(cin, jumpString);
+        return "";
+    }
+    else if(ins == 1)
+        ChangeFileName();
+
+    cout<<"Inserisci la path dove è presente il file. Non bisogna inserire nella path anche il nome del file ma solo la sua locazione."<<endl;
+    cout<<"Path: ";
+    getline(cin,putPath);
+    setPath(putPath + "/" + getFileName());
+    cout<<getPath()<<endl;
+    cout<<"\nPath cambiata correttamente!"<<endl;
+    return putPath;
+}
+
+void CIniFile::RenameFileName(const string& putString, const string& putKeys)
+{
+    string newFileName = putString + "." + putKeys;
+
+    size_t count = getPath().find_last_of('/');
+    string initPath = getPath().substr(0,count);
+
+    string newPath = initPath + "/" + newFileName;
+    string oldPath = initPath + "/" + getFileName();
+    rename(oldPath.c_str(),newPath.c_str());
+    setFileName(newFileName);
+    setPath(newPath);
+    cout << "Nome del file: " << getFileName() << endl;
+}
+
 int CIniFile::FindSection(string const &keyName) const
 {
     for(int keyID = 0; keyID < section.size(); keyID++)
         if (section[keyID] == keyName)
             return keyID;
-
-    return noID;
-}
-
-int CIniFile::FindValue(int const &keyID, string const &valueName) const
-{
-    if(keys.empty() || keyID >= keys.size())
-        return noID;
-
-    for(int valueID = 0; valueID < keys[keyID].names.size(); valueID++)
-        if(keys[keyID].names[valueID] == valueName)
-            return valueID;
 
     return noID;
 }
@@ -147,6 +191,32 @@ int CIniFile::NumKeyValuesInSection(string const &keyName)
     return keys[keyID].names.size();
 }
 
+bool CIniFile::DeleteSection(string const& keyName)
+{
+    int keyID = FindSection(keyName);
+    if(keyID == noID)
+        return false;
+
+    auto sectionPos = section.begin() + keyID;
+    auto keyPos = keys.begin() + keyID;
+    section.erase(sectionPos, sectionPos + 1);
+    keys.erase(keyPos, keyPos + 1);
+
+    return true;
+}
+
+int CIniFile::FindValue(int const &keyID, string const &valueName) const
+{
+    if(keys.empty() || keyID >= keys.size())
+        return noID;
+
+    for(int valueID = 0; valueID < keys[keyID].names.size(); valueID++)
+        if(keys[keyID].names[valueID] == valueName)
+            return valueID;
+
+    return noID;
+}
+
 string CIniFile::GetValueName(int const &keyID, int const &valueID) const
 {
     if(keyID < keys.size() && valueID < keys[keyID].names.size())
@@ -160,24 +230,6 @@ string CIniFile::GetValueName(string const &keyName, int const &valueID) const
     if(keyID == noID)
         return "ID non trovato!";
     return GetValueName(keyID, valueID);
-}
-
-void CIniFile::NewHeaderComment(string const &comment)
-{
-    comments.resize(comments.size() + 1, comment);
-}
-
-string CIniFile::GetHeaderComment(int const &commentID) const
-{
-    if(commentID < comments.size())
-        return comments[commentID];
-    return "";
-}
-
-void CIniFile::GetAllHeaderComments()
-{
-    for(int commentID = 0; commentID < NumHeaderComments(); commentID++)
-        cout<<";"<<GetHeaderComment(commentID)<<endl;
 }
 
 int CIniFile::NumKeyCommentsInSection(int const &keyID) const
@@ -244,30 +296,6 @@ bool CIniFile::DeleteValueInSection(string const &keyName, string const &valueNa
     return true;
 }
 
-bool CIniFile::DeleteSection(string const& keyName)
-{
-    int keyID = FindSection(keyName);
-    if(keyID == noID)
-        return false;
-
-    auto sectionPos = section.begin() + keyID;
-    auto keyPos = keys.begin() + keyID;
-    section.erase(sectionPos, sectionPos + 1);
-    keys.erase(keyPos, keyPos + 1);
-
-    return true;
-}
-
-bool CIniFile::DeleteHeaderComment(int commentID)
-{
-    if (commentID < comments.size()) {
-        auto commentPos = comments.begin() + commentID;
-        comments.erase(commentPos, commentPos + 1);
-        return true;
-    }
-    return false;
-}
-
 bool CIniFile::DeleteCommentInSection(int const &keyID, int const &commentID)
 {
     if(keyID < keys.size() && commentID < keys[keyID].comment.size()) {
@@ -286,6 +314,14 @@ bool CIniFile::DeleteCommentInSection(string const &keyName, int const &commentI
     return DeleteCommentInSection(keyID, commentID);
 }
 
+bool CIniFile::DeleteAllCommentsInSection(string const &keyName)
+{
+    int keyID = FindSection(keyName);
+    if(keyID == noID)
+        return false;
+    return DeleteAllCommentsInSection(keyID);
+}
+
 bool CIniFile::DeleteAllCommentsInSection(int const &keyID)
 {
     if(keyID < keys.size()) {
@@ -295,12 +331,32 @@ bool CIniFile::DeleteAllCommentsInSection(int const &keyID)
     return false;
 }
 
-bool CIniFile::DeleteAllCommentsInSection(string const &keyName)
+void CIniFile::NewHeaderComment(string const &comment)
 {
-    int keyID = FindSection(keyName);
-    if(keyID == noID)
-        return false;
-    return DeleteAllCommentsInSection(keyID);
+    comments.resize(comments.size() + 1, comment);
+}
+
+string CIniFile::GetHeaderComment(int const &commentID) const
+{
+    if(commentID < comments.size())
+        return comments[commentID];
+    return "";
+}
+
+void CIniFile::GetAllHeaderComments()
+{
+    for(int commentID = 0; commentID < NumHeaderComments(); commentID++)
+        cout<<";"<<GetHeaderComment(commentID)<<endl;
+}
+
+bool CIniFile::DeleteHeaderComment(int commentID)
+{
+    if (commentID < comments.size()) {
+        auto commentPos = comments.begin() + commentID;
+        comments.erase(commentPos, commentPos + 1);
+        return true;
+    }
+    return false;
 }
 
 void CIniFile::Type_Choice_SetValue(int type_choice, string const &putKeys, string const &putString, string insValue)
@@ -317,6 +373,32 @@ void CIniFile::Type_Choice_SetValue(int type_choice, string const &putKeys, stri
             insValue = getBoolValue(insValue);
             if(insValue != "2")
                 SetValue(putKeys,putString,insValue);
+        }
+        else
+            cout<<"Hai inserito un codice di tipo della variabile sbagliato!"<<endl;
+    }
+    catch(exception& e) {
+        cout << "Conversione fallita! Proabile errore di scelta di tipo del valore." << endl;
+        cout <<"Eccezione lanciata: "<<e.what()<<endl;
+    }
+}
+
+void CIniFile::Type_Choice_GetValue(int type_choice, string const &putKeys, string const &putString, string insValue)
+{
+    try
+    {
+        if(type_choice == 1)
+            cout<<"Valore: "<<GetValue(putKeys,putString,insValue)<<endl;
+        else if(type_choice == 2)
+            cout<<"Valore: "<<GetValue(putKeys,putString,stoi(insValue))<<endl;
+        else if(type_choice == 3)
+            cout<<"Valore: "<<GetValue(putKeys,putString,stof(insValue))<<endl;
+        else if(type_choice == 4)
+        {
+            insValue = getBoolValue(insValue);
+            int insBool = stoi(insValue);
+            if(insBool != 2)
+                cout<<"Valore: "<<GetValue(putKeys,putString,boost::lexical_cast<bool>(insBool))<<endl;
         }
         else
             cout<<"Hai inserito un codice di tipo della variabile sbagliato!"<<endl;
@@ -348,30 +430,18 @@ bool CIniFile::SetValue(string const &keyName, string const &valueName, const st
     return true;
 }
 
-void CIniFile::Type_Choice_GetValue(int type_choice, string const &putKeys, string const &putString, string insValue)
-{
-    try
-    {
-        if(type_choice == 1)
-            cout<<"Valore: "<<GetValue(putKeys,putString,insValue)<<endl;
-        else if(type_choice == 2)
-            cout<<"Valore: "<<GetValue(putKeys,putString,stoi(insValue))<<endl;
-        else if(type_choice == 3)
-            cout<<"Valore: "<<GetValue(putKeys,putString,stof(insValue))<<endl;
-        else if(type_choice == 4)
-        {
-            insValue = getBoolValue(insValue);
-            int insBool = stoi(insValue);
-            if(insBool != 2)
-                cout<<"Valore: "<<GetValue(putKeys,putString,boost::lexical_cast<bool>(insBool))<<endl;
-        }
-        else
-            cout<<"Hai inserito un codice di tipo della variabile sbagliato!"<<endl;
+string CIniFile::getBoolValue(string ret){
+    //Valori accettati per ritornare TRUE '1', 'yes', 'true' e 'on',
+    //invece '0', 'no', 'false' e 'off' ritornano quindi FALSE.
+    if(ret == "1" || ret == "yes" || ret == "true" || ret == "on")
+        ret = "1";
+    else if(ret == "0"  || ret == "no"  || ret == "false"  || ret == "off")
+        ret = "0";
+    else{
+        cout<<"Errore nell'inserimento del valore booleano."<<endl;
+        ret = "2";
     }
-    catch(exception& e) {
-        cout << "Conversione fallita! Proabile errore di scelta di tipo del valore." << endl;
-        cout <<"Eccezione lanciata: "<<e.what()<<endl;
-    }
+    return ret;
 }
 
 void CIniFile::toString()
@@ -383,60 +453,4 @@ void CIniFile::toString()
         for (int valueID = 0; valueID < NumKeyValuesInSection(keyID); valueID++)
             cout<<"Nome Valore = "<<GetValueName(keyID,valueID)<<", Valore = "<<GetValue<string>(keyID,valueID)<<endl;
     }
-}
-
-void CIniFile::RenameFileName(const string& putString, const string& putKeys)
-{
-    string newFileName = putString + "." + putKeys;
-
-    size_t count = getPath().find_last_of('/');
-    string initPath = getPath().substr(0,count);
-
-    string newPath = initPath + "/" + newFileName;
-    string oldPath = initPath + "/" + getFileName();
-    rename(oldPath.c_str(),newPath.c_str());
-    setFileName(newFileName);
-    setPath(newPath);
-    cout << "Nome del file: " << getFileName() << endl;
-}
-
-void CIniFile::ChangeFileName()
-{
-    string putKeys, putString, newFileName;
-
-    cout << "Inserisci il nome del file su cui lavorare (senza estensione): ";
-    getline(cin, putString);
-    cout << "Inserisci l'estensione del file: ";
-    getline(cin, putKeys);
-    newFileName = putString + "." + putKeys;
-    setFileName(newFileName);
-    cout << "Nome del file: " << getFileName() << endl;
-}
-
-string CIniFile::ChangePath()
-{
-    int ins;
-    string putPath,jumpString;
-
-    cout<<"\nNome del file corrente: "<<getFileName()<<"\n"<<endl;
-    cout<<"Vuoi cambiare file di lavoro ?"<<endl;
-    cout<<"Inserisci scelta <0-no 1-si>: ";
-    cin>>ins;
-    getline(cin, jumpString);
-    if(cin.fail() || ins >= 2){
-        cout<<"Hai inserito un input sbagliato!"<<endl;
-        cin.clear();
-        getline(cin, jumpString);
-        return "";
-    }
-    else if(ins == 1)
-        ChangeFileName();
-
-    cout<<"Inserisci la path dove è presente il file. Non bisogna inserire nella path anche il nome del file ma solo la sua locazione."<<endl;
-    cout<<"Path: ";
-    getline(cin,putPath);
-    setPath(putPath + "/" + getFileName());
-    cout<<getPath()<<endl;
-    cout<<"\nPath cambiata correttamente!"<<endl;
-    return putPath;
 }

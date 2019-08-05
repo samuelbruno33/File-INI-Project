@@ -49,11 +49,11 @@ public:
         CIniFile::fileName = fn;
     }
 
-    //Funzione che viene utilizzata per cambiare la path del file
-    string ChangePath();
-
     //Funzione che viene utilizzata per cambiare il nome del file insieme alla path
     void ChangeFileName();
+
+    //Funzione che viene utilizzata per cambiare la path del file
+    string ChangePath();
 
     //Funzione che viene utilizzata per rinominare il file
     void RenameFileName(const string& putString, const string& putKeys);
@@ -214,19 +214,7 @@ public:
     //Controllo del tipo Booleano nel ritorno del valore nella macro-funzione getValue.
     //Questo controllo è fondamentale perchè all'interno file INI ci sono diverse modalità di dichiarazione
     //di un valore booleano.
-    static string getBoolValue(string ret){
-        //Valori accettati per ritornare TRUE '1', 'yes', 'true' e 'on',
-        //invece '0', 'no', 'false' e 'off' ritornano quindi FALSE.
-        if(ret == "1" || ret == "yes" || ret == "true" || ret == "on" )
-            ret = "1";
-        else if(ret == "0"  || ret == "no"  || ret == "false"  || ret == "off" )
-            ret = "0";
-        else{
-            cout<<"Errore nell'inserimento del valore booleano."<<endl;
-            ret = "2";
-        }
-        return ret;
-    }
+    static string getBoolValue(string ret);
 
     ///Funzione che stampa l'intero file INI
     void toString();

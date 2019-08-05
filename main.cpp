@@ -9,7 +9,7 @@ using namespace std;
 int main()
 {
     int ans=0,choice,type_choice,putComment,defVal;
-    string putPath,putString,putKeys,insValue,jumpString,defPath;
+    string putString,putKeys,insValue,jumpString,defPath;
 
     cout<<"\n"
           "\n"
