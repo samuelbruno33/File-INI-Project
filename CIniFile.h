@@ -177,15 +177,24 @@ public:
         if (keyID < keys.size() && valueID < keys[keyID].names.size()) {
             string ret = keys[keyID].value[valueID];
             if(typeid(T) == typeid(bool)) {
+                ret = getBoolValue(ret);
                 int val = stoi(ret);
-                return boost::lexical_cast<T>(val);
+                if(val == 2)
+                    goto boolean_label;
+                else
+                    return boost::lexical_cast<T>(val);
             }
             else if(typeid(T) == typeid(int))
                 return boost::lexical_cast<T>(stoi(ret));
             else if(typeid(T) == typeid(float))
                 return boost::lexical_cast<T>(stof(ret));
-            else
+            else if(typeid(T) == typeid(string))
                 return boost::lexical_cast<T>(ret);
+            else{
+                boolean_label:
+                cout<<"Ritorna il valore di default: ";
+                return boost::lexical_cast<T>(defValue);
+            }
         }
     }
 
@@ -201,24 +210,24 @@ public:
 
         string ret = keys[keyID].value[valueID];
         if(typeid(T) == typeid(bool)) {
+            ret = getBoolValue(ret);
             int val = stoi(ret);
-            /*if(val == 2)
+            if(val == 2)
                goto boolean_label;
-           else*/
+           else
             return boost::lexical_cast<T>(val);
         }
         else if(typeid(T) == typeid(int))
             return boost::lexical_cast<T>(stoi(ret));
         else if(typeid(T) == typeid(float))
             return boost::lexical_cast<T>(stof(ret));
-        else
+        else if(typeid(T) == typeid(string))
             return boost::lexical_cast<T>(ret);
-        /*else
-        {
+        else{
           boolean_label:
             cout<<"Ritorna il valore di default: ";
             return boost::lexical_cast<T>(defValue);
-        }*/
+        }
     }
 
     //Controllo del tipo Booleano nel ritorno del valore nella macro-funzione getValue.
