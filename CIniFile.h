@@ -18,7 +18,8 @@ class CIniFile
 {
 public:
     enum error{noID = -1};
-    explicit CIniFile(string initialPath = "/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject/Files", string fn = "ini_file.ini") : fileName(fn){
+    //home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject/Files
+    explicit CIniFile(string initialPath = "C:/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/FileINIProject/Files", string fn = "ini_file.ini") : fileName(fn){
         defaultPath = initialPath + "/" + fileName;
     }
     virtual ~CIniFile() = default;
@@ -55,7 +56,7 @@ public:
     void ChangeFileName();
 
     //Funzione che viene utilizzata per rinominare il file
-    void RenameFileName();
+    void RenameFileName(string putKeys, string putString);
 
     ///Funzioni che riguardano le sezioni
 
@@ -201,6 +202,9 @@ public:
         string ret = keys[keyID].value[valueID];
         if(typeid(T) == typeid(bool)) {
             int val = stoi(ret);
+            /*if(val == 2)
+               goto boolean_label;
+           else*/
             return boost::lexical_cast<T>(val);
         }
         else if(typeid(T) == typeid(int))
@@ -209,6 +213,12 @@ public:
             return boost::lexical_cast<T>(stof(ret));
         else
             return boost::lexical_cast<T>(ret);
+        /*else
+        {
+          boolean_label:
+            cout<<"Ritorna il valore di default: ";
+            return boost::lexical_cast<T>(defValue);
+        }*/
     }
 
     //Controllo del tipo Booleano nel ritorno del valore nella macro-funzione getValue.

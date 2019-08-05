@@ -6,14 +6,14 @@
 #include "Include/catch.hpp"
 #include "CIniFile.h"
 
-CIniFile iniFile("/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject/Files","ini_test.ini");
+CIniFile iniFile("/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject/Files/Test","ini_test.ini");
 
 TEST_CASE("Testing the constructor") {
     CIniFile iniFile2("C:/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/FileINIProject/Files","ini_file.ini");
-    CIniFile iniFile3("/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject/Files","ini_test.ini");
+    CIniFile iniFile3("/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject/Files/Test","ini_test.ini");
     REQUIRE(iniFile2.getPath() == "C:/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/FileINIProject/Files/ini_file.ini");
-    REQUIRE(iniFile3.getPath() == "/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject/Files/ini_test.ini");
-    REQUIRE(iniFile.getPath() == "/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject/Files/ini_test.ini");
+    REQUIRE(iniFile3.getPath() == "/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject/Files/Test/ini_test.ini");
+    REQUIRE(iniFile.getPath() == "/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject/Files/Test/ini_test.ini");
 }
 
 TEST_CASE("Testing the reader and the writer functions") {
@@ -87,7 +87,7 @@ TEST_CASE("Testing path and filename functions") {
     iniFile2.ChangePath();
     REQUIRE(iniFile2.getPath() == "/home/samuel/empty_ini_test.ini");
     CIniFile iniFile3("/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject/Files/Test","testing_path_ini_test.ini");
-    iniFile3.RenameFileName();
+    iniFile3.RenameFileName("changedFilename","ini");
     REQUIRE(iniFile3.getPath() == "/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject/Files/Test/changedFilename.ini");
     iniFile.WriteFile();
 }

@@ -2,8 +2,6 @@
 // Created by sbruno on 09/07/2019.
 //
 
-#include <iostream>
-#include <string>
 #include "CIniFile.h"
 
 using namespace std;
@@ -316,7 +314,11 @@ redo_label:
                 break;
 
             case 18:
-                iniFile.RenameFileName();
+                cout << "Scegli il nome che vuoi dare al file (senza estensione): ";
+                getline(cin, putString);
+                cout << "Scegli l'estensione da dare al file: ";
+                getline(cin, putKeys);
+                iniFile.RenameFileName(putString,putKeys);
                 break;
         }
     }

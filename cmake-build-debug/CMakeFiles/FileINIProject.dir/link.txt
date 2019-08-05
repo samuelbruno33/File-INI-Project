@@ -1,1 +1,1 @@
-/usr/bin/c++   -static-libstdc++ -static-libgcc -g   CMakeFiles/FileINIProject.dir/CIniFile.cpp.o CMakeFiles/FileINIProject.dir/main.cpp.o  -o FileINIProject 
+/usr/bin/c++.exe  -static-libstdc++ -static-libgcc -g  -Wl,--enable-auto-import CMakeFiles/FileINIProject.dir/CIniFile.cpp.o CMakeFiles/FileINIProject.dir/main.cpp.o  -o FileINIProject.exe -Wl,--out-implib,libFileINIProject.dll.a -Wl,--major-image-version,0,--minor-image-version,0 

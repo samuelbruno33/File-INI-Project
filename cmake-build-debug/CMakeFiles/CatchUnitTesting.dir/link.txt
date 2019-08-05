@@ -1,1 +1,1 @@
-/usr/bin/c++   -static-libstdc++ -static-libgcc -g   CMakeFiles/CatchUnitTesting.dir/CIniFile.cpp.o CMakeFiles/CatchUnitTesting.dir/TestCIniFile.cpp.o  -o CatchUnitTesting 
+/usr/bin/c++.exe  -static-libstdc++ -static-libgcc -g  -Wl,--enable-auto-import CMakeFiles/CatchUnitTesting.dir/CIniFile.cpp.o CMakeFiles/CatchUnitTesting.dir/TestCIniFile.cpp.o  -o CatchUnitTesting.exe -Wl,--out-implib,libCatchUnitTesting.dll.a -Wl,--major-image-version,0,--minor-image-version,0 

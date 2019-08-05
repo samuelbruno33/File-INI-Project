@@ -364,15 +364,9 @@ void CIniFile::toString()
     }
 }
 
-void CIniFile::RenameFileName()
+void CIniFile::RenameFileName(string putKeys, string putString)
 {
-    string putKeys, putString, newFileName;
-
-    cout << "Scegli il nome che vuoi dare al file (senza estensione): ";
-    getline(cin, putString);
-    cout << "Scegli l'estensione da dare al file: ";
-    getline(cin, putKeys);
-    newFileName = putString + "." + putKeys;
+    string newFileName = putString + "." + putKeys;
 
     size_t count = getPath().find_last_of("/");
     string initPath = getPath().substr(0,count);
