@@ -2,8 +2,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/CatchUnitTesting.dir/CIniFile.cpp.o"
   "CMakeFiles/CatchUnitTesting.dir/TestCIniFile.cpp.o"
   "CatchUnitTesting.pdb"
-  "CatchUnitTesting.exe"
-  "libCatchUnitTesting.dll.a"
+  "CatchUnitTesting"
 )
 
 # Per-language clean rules from dependency scanning.

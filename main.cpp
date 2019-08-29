@@ -32,7 +32,7 @@ redo_label:
     cin>>defVal;
     getline(cin, jumpString);
     if(cin.fail() || defVal >= 2){
-        cout<<"Hai inserito un input sbagliato!"<<endl;
+        cout<<"\nHai inserito un input sbagliato!"<<endl;
         cin.clear();
         getline(cin, jumpString);
         goto redo_label;

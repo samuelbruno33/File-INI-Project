@@ -4,8 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/FileINIProject/CIniFile.cpp" "/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/FileINIProject/cmake-build-debug/CMakeFiles/CatchUnitTesting.dir/CIniFile.cpp.o"
-  "/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/FileINIProject/TestCIniFile.cpp" "/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/FileINIProject/cmake-build-debug/CMakeFiles/CatchUnitTesting.dir/TestCIniFile.cpp.o"
+  "/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject/CIniFile.cpp" "/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject/cmake-build-debug/CMakeFiles/CatchUnitTesting.dir/CIniFile.cpp.o"
+  "/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject/TestCIniFile.cpp" "/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject/cmake-build-debug/CMakeFiles/CatchUnitTesting.dir/TestCIniFile.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -16,7 +16,7 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
-  "C:/Program Files (x86)/boost"
+  "/opt/boost_1_70_0"
   )
 
 # Targets to which this target links.
