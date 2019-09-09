@@ -10,8 +10,11 @@ bool CIniFile::ReadFile()
 {
     fstream f;
     string line;
-    string keyName, valueName, value;
+    string sectionName, valueName, value;
     string::size_type pLeft, pRight;
+    int sectionID = 0;
+    int valueID = 0;
+    int count = 1;
 
     //Apro il file
     f.open(getPath().c_str(), ios::in);
@@ -27,15 +30,24 @@ bool CIniFile::ReadFile()
                 switch (line[pLeft]) {
                     case '[':
                         if ((pRight = line.find_last_of(']')) != string::npos && pRight > pLeft) {
-                            keyName = line.substr(pLeft + 1, pRight - pLeft - 1);
-                            AddSection(keyName);
+                            sectionName = line.substr(pLeft + 1, pRight - pLeft - 1);
+                            AddSection(sectionName);
+                            sectionID = FindSection(sectionName);
                         }
                         break;
 
                     case '=':
                         valueName = line.substr(0, pLeft);
                         value = line.substr(pLeft + 1);
-                        SetValue(keyName, valueName, value);
+                        valueID = FindValue(sectionID,valueName);
+                        //Se una chiave ha un valueID diverso da -1 al momento della lettura iniziale del file allora
+                        //vuol dire che esiste già una chiave con lo stesso nome e quindi riscrivo il nome della
+                        //chiave stessa in modo che non possa sovrascrivere l'altro valore già presente nel file.
+                        if(valueID != -1){
+                            count++;
+                            valueName.append(std::to_string(count));
+                        }
+                        SetValue(sectionName, valueName, value);
                         break;
 
                     //Ci possono essere due tipologie di commenti che iniziano con # o ;
@@ -44,7 +56,7 @@ bool CIniFile::ReadFile()
                         if (section.empty())
                             NewHeaderComment(line.substr(pLeft + 1));
                         else
-                            AddKeyCommentInSection(keyName, line.substr(pLeft + 1));
+                            AddKeyCommentInSection(sectionName, line.substr(pLeft + 1));
                         break;
                 }
             }
@@ -57,7 +69,7 @@ bool CIniFile::ReadFile()
 
 bool CIniFile::WriteFile()
 {
-    int commentID, keyID, valueID;
+    int commentID, sectionID, valueID;
     fstream f;
 
     f.open(getPath().c_str(), ios::out);
@@ -71,14 +83,14 @@ bool CIniFile::WriteFile()
         f << endl;
 
     //Scrive su file le sezioni contenenti le varie chiavi di valori
-    for (keyID = 0; keyID < keys.size(); keyID++) {
-        f << '[' << section[keyID] << ']' << endl;
+    for (sectionID = 0; sectionID < keys.size(); sectionID++) {
+        f << '[' << section[sectionID] << ']' << endl;
         // Commenti
-        for (commentID = 0; commentID < keys[keyID].comment.size(); commentID++)
-            f << ';' << keys[keyID].comment[commentID] << endl;
+        for (commentID = 0; commentID < keys[sectionID].comment.size(); commentID++)
+            f << ';' << keys[sectionID].comment[commentID] << endl;
         // Valori
-        for (valueID = 0; valueID < keys[keyID].names.size(); valueID++)
-            f << keys[keyID].names[valueID] << '=' << keys[keyID].value[valueID] << endl;
+        for (valueID = 0; valueID < keys[sectionID].names.size(); valueID++)
+            f << keys[sectionID].names[valueID] << '=' << keys[sectionID].value[valueID] << endl;
         f << endl;
     }
     f.close();
@@ -86,41 +98,15 @@ bool CIniFile::WriteFile()
     return true;
 }
 
-void CIniFile::ChangeFileName()
+void CIniFile::ChangeFileName(const string& putString, const string& putKeys)
 {
-    string putKeys, putString, newFileName;
-
-    cout << "Inserisci il nome del file su cui lavorare (senza estensione): ";
-    getline(cin, putString);
-    cout << "Inserisci l'estensione del file: ";
-    getline(cin, putKeys);
-    newFileName = putString + "." + putKeys;
+    string newFileName = putString + "." + putKeys;
     setFileName(newFileName);
     cout << "Nome del file: " << getFileName() << endl;
 }
 
-string CIniFile::ChangePath()
+string CIniFile::ChangePath(const string& putPath)
 {
-    int ins = 0;
-    string putPath,jumpString;
-
-    cout<<"\nNome del file corrente: "<<getFileName()<<"\n"<<endl;
-    cout<<"Vuoi cambiare file di lavoro ?"<<endl;
-    cout<<"Inserisci scelta <0-no 1-si>: ";
-    cin>>ins;
-    getline(cin, jumpString);
-    if(cin.fail() || ins >= 2){
-        cout<<"Hai inserito un input sbagliato!"<<endl;
-        cin.clear();
-        getline(cin, jumpString);
-        return "";
-    }
-    else if(ins == 1)
-        ChangeFileName();
-
-    cout<<"Inserisci la path dove è presente il file. Non bisogna inserire nella path anche il nome del file ma solo la sua locazione."<<endl;
-    cout<<"Path: ";
-    getline(cin,putPath);
     setPath(putPath + "/" + getFileName());
     cout<<getPath()<<endl;
     cout<<"\nPath cambiata correttamente!"<<endl;
@@ -142,190 +128,190 @@ void CIniFile::RenameFileName(const string& putString, const string& putKeys)
     cout << "Nome del file: " << getFileName() << endl;
 }
 
-int CIniFile::FindSection(string const &keyName) const
+int CIniFile::FindSection(string const &sectionName) const
 {
-    for(int keyID = 0; keyID < section.size(); keyID++)
-        if (section[keyID] == keyName)
-            return keyID;
+    for(int sectionID = 0; sectionID < section.size(); sectionID++)
+        if (section[sectionID] == sectionName)
+            return sectionID;
 
     return noID;
 }
 
-int CIniFile::AddSection(string const &keyName)
+int CIniFile::AddSection(string const &sectionName)
 {
-    section.resize(section.size() + 1, keyName);
+    section.push_back(sectionName);
     keys.resize(keys.size() + 1);
     return section.size() - 1; //Ritorna l'ultima posizione della chiave inserita
 }
 
-string CIniFile::GetSection(int const &keyID) const
+string CIniFile::GetSection(int const &sectionID) const
 {
-    if(keyID < section.size())
-        return section[keyID];
+    if(sectionID < section.size())
+        return section[sectionID];
     else
         return "";
 }
 
-void CIniFile::GetValuesInSection(int const &keyID)
+void CIniFile::GetValuesInSection(int const &sectionID)
 {
-    if(keyID == noID)
+    if(sectionID == noID)
         cout<<"ID non trovato!"<<endl;
 
-    cout<<"\nSezione = " << GetSection(keyID) << endl;
-    for (int valueID = 0; valueID < NumKeyValuesInSection(keyID); valueID++)
-        cout<<"Nome Valore = "<<GetValueName(keyID,valueID)<<", Valore = "<<GetValue<string>(keyID,valueID)<<endl;
+    cout<<"\nSezione = " << GetSection(sectionID) << endl;
+    for (int valueID = 0; valueID < NumKeyValuesInSection(sectionID); valueID++)
+        cout<<"Nome Valore = "<<GetValueName(sectionID,valueID)<<", Valore = "<<GetValue<string>(sectionID,valueID)<<endl;
 }
 
-int CIniFile::NumKeyValuesInSection(int const &keyID)
+int CIniFile::NumKeyValuesInSection(int const &sectionID)
 {
-    if(keyID < keys.size())
-        return keys[keyID].names.size();
+    if(sectionID < keys.size())
+        return keys[sectionID].names.size();
     return 0;
 }
 
-int CIniFile::NumKeyValuesInSection(string const &keyName)
+int CIniFile::NumKeyValuesInSection(string const &sectionName)
 {
-    int keyID = FindSection(keyName);
-    if(keyID == noID)
+    int sectionID = FindSection(sectionName);
+    if(sectionID == noID)
         return 0;
-    return keys[keyID].names.size();
+    return keys[sectionID].names.size();
 }
 
-bool CIniFile::DeleteSection(string const& keyName)
+bool CIniFile::DeleteSection(string const& sectionName)
 {
-    int keyID = FindSection(keyName);
-    if(keyID == noID)
+    int sectionID = FindSection(sectionName);
+    if(sectionID == noID)
         return false;
 
-    auto sectionPos = section.begin() + keyID;
-    auto keyPos = keys.begin() + keyID;
+    auto sectionPos = section.begin() + sectionID;
+    auto keyPos = keys.begin() + sectionID;
     section.erase(sectionPos, sectionPos + 1);
     keys.erase(keyPos, keyPos + 1);
 
     return true;
 }
 
-int CIniFile::FindValue(int const &keyID, string const &valueName) const
+int CIniFile::FindValue(int const &sectionID, string const &valueName) const
 {
-    if(keys.empty() || keyID >= keys.size())
+    if(keys.empty() || sectionID >= keys.size())
         return noID;
 
-    for(int valueID = 0; valueID < keys[keyID].names.size(); valueID++)
-        if(keys[keyID].names[valueID] == valueName)
+    for(int valueID = 0; valueID < keys[sectionID].names.size(); valueID++)
+        if(keys[sectionID].names[valueID] == valueName)
             return valueID;
 
     return noID;
 }
 
-string CIniFile::GetValueName(int const &keyID, int const &valueID) const
+string CIniFile::GetValueName(int const &sectionID, int const &valueID) const
 {
-    if(keyID < keys.size() && valueID < keys[keyID].names.size())
-        return keys[keyID].names[valueID];
+    if(sectionID < keys.size() && valueID < keys[sectionID].names.size())
+        return keys[sectionID].names[valueID];
     return "";
 }
 
-string CIniFile::GetValueName(string const &keyName, int const &valueID) const
+string CIniFile::GetValueName(string const &sectionName, int const &valueID) const
 {
-    int keyID = FindSection(keyName);
-    if(keyID == noID)
+    int sectionID = FindSection(sectionName);
+    if(sectionID == noID)
         return "ID non trovato!";
-    return GetValueName(keyID, valueID);
+    return GetValueName(sectionID, valueID);
 }
 
-int CIniFile::NumKeyCommentsInSection(int const &keyID) const
+int CIniFile::NumKeyCommentsInSection(int const &sectionID) const
 {
-    if(keyID < keys.size())
-        return keys[keyID].comment.size();
+    if(sectionID < keys.size())
+        return keys[sectionID].comment.size();
     return 0;
 }
 
-int CIniFile::NumKeyCommentsInSection(string const &keyName) const
+int CIniFile::NumKeyCommentsInSection(string const &sectionName) const
 {
-    int keyID = FindSection(keyName);
-    if(keyID == noID)
+    int sectionID = FindSection(sectionName);
+    if(sectionID == noID)
         return 0;
-    return keys[keyID].comment.size();
+    return keys[sectionID].comment.size();
 }
 
-bool CIniFile::AddKeyCommentInSection(int const &keyID, string const &comment)
+bool CIniFile::AddKeyCommentInSection(int const &sectionID, string const &comment)
 {
-    if(keyID < keys.size()) {
-        keys[keyID].comment.resize(keys[keyID].comment.size() + 1, comment);
+    if(sectionID < keys.size()) {
+        keys[sectionID].comment.push_back(comment);
         return true;
     }
     return false;
 }
 
-bool CIniFile::AddKeyCommentInSection(string const &keyName, string const &comment)
+bool CIniFile::AddKeyCommentInSection(string const &sectionName, string const &comment)
 {
-    int keyID = FindSection(keyName);
-    if (keyID == noID)
+    int sectionID = FindSection(sectionName);
+    if (sectionID == noID)
         return false;
-    return AddKeyCommentInSection(keyID, comment);
+    return AddKeyCommentInSection(sectionID, comment);
 }
 
-string CIniFile::GetKeyComment(int const &keyID, int const &commentID) const
+string CIniFile::GetKeyComment(int const &sectionID, int const &commentID) const
 {
-    if(keyID < keys.size() && commentID < keys[keyID].comment.size())
-        return keys[keyID].comment[commentID];
+    if(sectionID < keys.size() && commentID < keys[sectionID].comment.size())
+        return keys[sectionID].comment[commentID];
     return "";
 }
 
-string CIniFile::GetKeyComment(string const &keyName, int const &commentID) const
+string CIniFile::GetKeyComment(string const &sectionName, int const &commentID) const
 {
-    int keyID = FindSection(keyName);
-    if (keyID == noID)
+    int sectionID = FindSection(sectionName);
+    if (sectionID == noID)
         return "ID non trovato!";
-    return GetKeyComment(keyID, commentID);
+    return GetKeyComment(sectionID, commentID);
 }
 
-bool CIniFile::DeleteValueInSection(string const &keyName, string const &valueName)
+bool CIniFile::DeleteValueInSection(string const &sectionName, string const &valueName)
 {
-    int keyID = FindSection(keyName);
-    if(keyID == noID)
+    int sectionID = FindSection(sectionName);
+    if(sectionID == noID)
         return false;
 
-    int valueID = FindValue(keyID, valueName);
+    int valueID = FindValue(sectionID, valueName);
     if(valueID == noID)
         return false;
 
-    auto namePos = keys[keyID].names.begin() + valueID;
-    auto valuePos = keys[keyID].value.begin() + valueID;
-    keys[keyID].names.erase(namePos, namePos + 1);
-    keys[keyID].value.erase(valuePos, valuePos + 1);
+    auto namePos = keys[sectionID].names.begin() + valueID;
+    auto valuePos = keys[sectionID].value.begin() + valueID;
+    keys[sectionID].names.erase(namePos, namePos + 1);
+    keys[sectionID].value.erase(valuePos, valuePos + 1);
     return true;
 }
 
-bool CIniFile::DeleteCommentInSection(int const &keyID, int const &commentID)
+bool CIniFile::DeleteCommentInSection(int const &sectionID, int const &commentID)
 {
-    if(keyID < keys.size() && commentID < keys[keyID].comment.size()) {
-        auto commentPos = keys[keyID].comment.begin() + commentID;
-        keys[keyID].comment.erase(commentPos, commentPos + 1);
+    if(sectionID < keys.size() && commentID < keys[sectionID].comment.size()) {
+        auto commentPos = keys[sectionID].comment.begin() + commentID;
+        keys[sectionID].comment.erase(commentPos, commentPos + 1);
         return true;
     }
     return false;
 }
 
-bool CIniFile::DeleteCommentInSection(string const &keyName, int const &commentID)
+bool CIniFile::DeleteCommentInSection(string const &sectionName, int const &commentID)
 {
-    int keyID = FindSection(keyName);
-    if(keyID == noID)
+    int sectionID = FindSection(sectionName);
+    if(sectionID == noID)
         return false;
-    return DeleteCommentInSection(keyID, commentID);
+    return DeleteCommentInSection(sectionID, commentID);
 }
 
-bool CIniFile::DeleteAllCommentsInSection(string const &keyName)
+bool CIniFile::DeleteAllCommentsInSection(string const &sectionName)
 {
-    int keyID = FindSection(keyName);
-    if(keyID == noID)
+    int sectionID = FindSection(sectionName);
+    if(sectionID == noID)
         return false;
-    return DeleteAllCommentsInSection(keyID);
+    return DeleteAllCommentsInSection(sectionID);
 }
 
-bool CIniFile::DeleteAllCommentsInSection(int const &keyID)
+bool CIniFile::DeleteAllCommentsInSection(int const &sectionID)
 {
-    if(keyID < keys.size()) {
-        keys[keyID].comment.clear();
+    if(sectionID < keys.size()) {
+        keys[sectionID].comment.clear();
         return true;
     }
     return false;
@@ -333,7 +319,7 @@ bool CIniFile::DeleteAllCommentsInSection(int const &keyID)
 
 void CIniFile::NewHeaderComment(string const &comment)
 {
-    comments.resize(comments.size() + 1, comment);
+    comments.push_back(comment);
 }
 
 string CIniFile::GetHeaderComment(int const &commentID) const
@@ -361,26 +347,15 @@ bool CIniFile::DeleteHeaderComment(int commentID)
 
 void CIniFile::Type_Choice_SetValue(int type_choice, string const &putKeys, string const &putString, string insValue)
 {
-    try
-    {
-        if(type_choice == 1)
+    if(type_choice == 1){
+        insValue = getBoolValue(insValue);
+        if(insValue != "2")
             SetValue(putKeys,putString,insValue);
-        else if(type_choice == 2)
-            SetValue(putKeys,putString,insValue);
-        else if(type_choice == 3)
-            SetValue(putKeys,putString,insValue);
-        else if(type_choice == 4){
-            insValue = getBoolValue(insValue);
-            if(insValue != "2")
-                SetValue(putKeys,putString,insValue);
-        }
-        else
-            cout<<"Hai inserito un codice di tipo della variabile sbagliato!"<<endl;
     }
-    catch(exception& e) {
-        cout << "Conversione fallita! Proabile errore di scelta di tipo del valore." << endl;
-        cout <<"Eccezione lanciata: "<<e.what()<<endl;
-    }
+    else if (type_choice > 1)
+        cout<<"Hai inserito un codice di tipo della variabile sbagliato!"<<endl;
+    else
+        SetValue(putKeys,putString,insValue);
 }
 
 void CIniFile::Type_Choice_GetValue(int type_choice, string const &putKeys, string const &putString, string insValue)
@@ -409,28 +384,35 @@ void CIniFile::Type_Choice_GetValue(int type_choice, string const &putKeys, stri
     }
 }
 
-bool CIniFile::SetValue(string const &keyName, string const &valueName, const string& value, bool const &create){
-    int keyID = FindSection(keyName);
-    if(keyID == noID) {
-        if(create)
-            keyID = AddSection(keyName);
+bool CIniFile::SetValue(string const &sectionName, string const &valueName, const string& value, bool const &create)
+{
+    int sectionID = FindSection(sectionName);
+    if(sectionID == noID) {
+        if(create){
+            sectionID = AddSection(sectionName);
+            cout<<"Nuova sezione creata!"<<endl;
+        }
         else
             return false;
     }
-    int valueID = FindValue(keyID, valueName);
+
+    int valueID = FindValue(sectionID, valueName);
     if(valueID == noID){
         if(!create)
             return false;
-        keys[keyID].names.resize(keys[keyID].names.size() + 1, valueName);
-        keys[keyID].value.resize(keys[keyID].value.size() + 1, value);
+        keys[sectionID].names.push_back(valueName);
+        keys[sectionID].value.push_back(value);
     }
-    else
-        keys[keyID].value[valueID] = value;
+    else{
+        keys[sectionID].value[valueID] = value;
+        cout<<"Valore modificato correttamente!"<<endl;
+    }
 
     return true;
 }
 
-string CIniFile::getBoolValue(string ret){
+string CIniFile::getBoolValue(string ret)
+{
     //Valori accettati per ritornare TRUE '1', 'yes', 'true' e 'on',
     //invece '0', 'no', 'false' e 'off' ritornano quindi FALSE.
     if(ret == "1" || ret == "yes" || ret == "true" || ret == "on")
@@ -448,9 +430,9 @@ void CIniFile::toString()
 {
     GetAllHeaderComments();
 
-    for(int keyID = 0; keyID < NumSections(); keyID++) {
-        cout<<"\nSezione = " << GetSection(keyID) << endl;
-        for (int valueID = 0; valueID < NumKeyValuesInSection(keyID); valueID++)
-            cout<<"Nome Valore = "<<GetValueName(keyID,valueID)<<", Valore = "<<GetValue<string>(keyID,valueID)<<endl;
+    for(int sectionID = 0; sectionID < NumSections(); sectionID++) {
+        cout<<"\nSezione = " << GetSection(sectionID) << endl;
+        for (int valueID = 0; valueID < NumKeyValuesInSection(sectionID); valueID++)
+            cout<<"Nome Valore = "<<GetValueName(sectionID,valueID)<<", Valore = "<<GetValue<string>(sectionID,valueID)<<endl;
     }
 }

@@ -73,7 +73,7 @@ redo_label:
 
         switch(choice)
         {
-            default:cout<<"Attenzione! Stai per uscire dal programma...Attendi!"<<endl;
+            default:cout<<"Inserimento nella scelta del menu' errata.\nAttenzione! Stai per uscire dal programma...Attendi!"<<endl;
                 cout<<"\n";
                 sleep(1);
                 ans=1;
@@ -101,7 +101,7 @@ redo_label:
                 getline(cin,putKeys);
                 cout<<"Inserisci il nome del parametro da porre all'interno di "<<putKeys<<": ";
                 getline(cin,putString);
-                cout<<"Vuoi inserire una stringa, un intero, un float o un booleano? <1-String,2-Int,3-Float,4-Bool>: ";
+                cout<<"Vuoi inserire un valore booleano? <0-no 1-si>: ";
                 cin>>type_choice;
                 getline(cin, jumpString);
                 if(cin.fail()){
@@ -140,9 +140,11 @@ redo_label:
                     cout<<"\nNome sezione non esistente!"<<endl;
                 else
                     iniFile.GetValuesInSection(iniFile.FindSection(putKeys));
+                iniFile.WriteFile();
                 break;
 
             case 6:
+                iniFile.WriteFile();
                 cout<<"Inserisci la sezione di cui vuoi visualizzare i dati: ";
                 getline(cin,putKeys);
                 if(iniFile.FindSection(putKeys) == iniFile.noID)
@@ -216,7 +218,7 @@ redo_label:
             case 10:
                 cout<<"Inserisci il nome della sezione da eliminare: ";
                 getline(cin,putString);
-                if(iniFile.FindSection(putKeys) == iniFile.noID)
+                if(iniFile.FindSection(putString) == iniFile.noID)
                     cout<<"\nNome sezione non esistente!"<<endl;
                 else
                 {
@@ -308,7 +310,28 @@ redo_label:
 
         case_label:
             case 17:
-                defPath = iniFile.ChangePath();
+                cout<<"\nNome del file corrente: "<<iniFile.getFileName()<<"\n"<<endl;
+                cout<<"Vuoi cambiare anche il file di lavoro ?"<<endl;
+                cout<<"Inserisci scelta <0-no 1-si>: ";
+                cin>>choice;
+                getline(cin, jumpString);
+                if(cin.fail() || choice >= 2){
+                    cout<<"\nHai inserito un input sbagliato!"<<endl;
+                    cin.clear();
+                    getline(cin, jumpString);
+                }
+                else if(choice == 1){
+                    cout << "Inserisci il nome del file su cui lavorare (senza estensione): ";
+                    getline(cin, putString);
+                    cout << "Inserisci l'estensione del file: ";
+                    getline(cin, putKeys);
+                    iniFile.ChangeFileName(putString,putKeys);
+                }
+
+                cout<<"Inserisci la path dove è presente il file. Non bisogna inserire nella path anche il nome del file ma solo la sua locazione."<<endl;
+                cout<<"Path: ";
+                getline(cin,putString);
+                defPath = iniFile.ChangePath(putString);
                 iniFile = CIniFile(defPath,iniFile.getFileName());
                 iniFile.ReadFile();
                 break;

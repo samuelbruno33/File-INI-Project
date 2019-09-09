@@ -6,20 +6,18 @@
 #include "Include/catch.hpp"
 #include "CIniFile.h"
 
-CIniFile iniFile("/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject/Files/Test","ini_test.ini");
+CIniFile iniFile("./Files/Test","ini_test.ini");
 
 TEST_CASE("Testing the constructor") {
     CIniFile iniFile2("C:/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/FileINIProject/Files","ini_file.ini");
-    CIniFile iniFile3("/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject/Files/Test","ini_test.ini");
     REQUIRE(iniFile2.getPath() == "C:/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/FileINIProject/Files/ini_file.ini");
-    REQUIRE(iniFile3.getPath() == "/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject/Files/Test/ini_test.ini");
-    REQUIRE(iniFile.getPath() == "/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject/Files/Test/ini_test.ini");
+    REQUIRE(iniFile.getPath() == "./Files/Test/ini_test.ini");
 }
 
 TEST_CASE("Testing the reader and the writer functions") {
     CIniFile iniFile2;
     CIniFile iniFile3("C:/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/FileINIProject/Files","ini_file.ini");
-    CIniFile iniFile4("/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject/Files/Test","empty_ini_test.ini");
+    CIniFile iniFile4("./Files/Test","empty_ini_test.ini");
     //Reader
     REQUIRE(iniFile4.ReadFile() == false);
     REQUIRE(iniFile3.ReadFile() == false);
@@ -83,11 +81,11 @@ TEST_CASE("Testing getters and setters for values that will be add in section") 
 }
 
 TEST_CASE("Testing path and filename functions") {
-    CIniFile iniFile2("/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject/Files/Test","empty_ini_test.ini");
-    iniFile2.ChangePath();
-    REQUIRE(iniFile2.getPath() == "/home/samuel/empty_ini_test.ini");
-    CIniFile iniFile3("/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject/Files/Test","testing_path_ini_test.ini");
+    CIniFile iniFile2("./Files/Test","empty_ini_test.ini");
+    iniFile2.ChangePath("/opt/etc");
+    REQUIRE(iniFile2.getPath() == "/opt/etc/empty_ini_test.ini");
+    CIniFile iniFile3("./Files/Test","pippo.ini");
     iniFile3.RenameFileName("changedFilename","ini");
-    REQUIRE(iniFile3.getPath() == "/home/samuel/Documenti/Università/Lab di Programmazione/FileINIProject/Files/Test/changedFilename.ini");
+    REQUIRE(iniFile3.getPath() == "./Files/Test/changedFilename.ini");
     iniFile.WriteFile();
 }
