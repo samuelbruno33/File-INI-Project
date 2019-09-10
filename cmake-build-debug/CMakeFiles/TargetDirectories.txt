@@ -1,4 +1,4 @@
-/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/FileINIProject/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/FileINIProject/cmake-build-debug/CMakeFiles/edit_cache.dir
-/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/FileINIProject/cmake-build-debug/CMakeFiles/CatchUnitTesting.dir
-/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/FileINIProject/cmake-build-debug/CMakeFiles/FileINIProject.dir
+/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/cmake-build-debug/CMakeFiles/edit_cache.dir
+/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/cmake-build-debug/CMakeFiles/CatchUnitTesting.dir
+/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/cmake-build-debug/CMakeFiles/FileINIProject.dir

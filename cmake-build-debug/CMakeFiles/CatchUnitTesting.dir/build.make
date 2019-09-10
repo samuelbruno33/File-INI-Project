@@ -43,10 +43,10 @@ RM = /cygdrive/c/Users/sbruno/.CLion2019.2/system/cygwin_cmake/bin/cmake.exe -E 
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/FileINIProject"
+CMAKE_SOURCE_DIR = "/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/FileINIProject/cmake-build-debug"
+CMAKE_BINARY_DIR = "/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/cmake-build-debug"
 
 # Include any dependencies generated for this target.
 include CMakeFiles/CatchUnitTesting.dir/depend.make
@@ -59,29 +59,29 @@ include CMakeFiles/CatchUnitTesting.dir/flags.make
 
 CMakeFiles/CatchUnitTesting.dir/CIniFile.cpp.o: CMakeFiles/CatchUnitTesting.dir/flags.make
 CMakeFiles/CatchUnitTesting.dir/CIniFile.cpp.o: ../CIniFile.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/FileINIProject/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/CatchUnitTesting.dir/CIniFile.cpp.o"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CatchUnitTesting.dir/CIniFile.cpp.o -c "/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/FileINIProject/CIniFile.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/CatchUnitTesting.dir/CIniFile.cpp.o"
+	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CatchUnitTesting.dir/CIniFile.cpp.o -c "/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/CIniFile.cpp"
 
 CMakeFiles/CatchUnitTesting.dir/CIniFile.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CatchUnitTesting.dir/CIniFile.cpp.i"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/FileINIProject/CIniFile.cpp" > CMakeFiles/CatchUnitTesting.dir/CIniFile.cpp.i
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/CIniFile.cpp" > CMakeFiles/CatchUnitTesting.dir/CIniFile.cpp.i
 
 CMakeFiles/CatchUnitTesting.dir/CIniFile.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CatchUnitTesting.dir/CIniFile.cpp.s"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/FileINIProject/CIniFile.cpp" -o CMakeFiles/CatchUnitTesting.dir/CIniFile.cpp.s
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/CIniFile.cpp" -o CMakeFiles/CatchUnitTesting.dir/CIniFile.cpp.s
 
 CMakeFiles/CatchUnitTesting.dir/TestCIniFile.cpp.o: CMakeFiles/CatchUnitTesting.dir/flags.make
 CMakeFiles/CatchUnitTesting.dir/TestCIniFile.cpp.o: ../TestCIniFile.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/FileINIProject/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/CatchUnitTesting.dir/TestCIniFile.cpp.o"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CatchUnitTesting.dir/TestCIniFile.cpp.o -c "/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/FileINIProject/TestCIniFile.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/CatchUnitTesting.dir/TestCIniFile.cpp.o"
+	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CatchUnitTesting.dir/TestCIniFile.cpp.o -c "/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/TestCIniFile.cpp"
 
 CMakeFiles/CatchUnitTesting.dir/TestCIniFile.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CatchUnitTesting.dir/TestCIniFile.cpp.i"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/FileINIProject/TestCIniFile.cpp" > CMakeFiles/CatchUnitTesting.dir/TestCIniFile.cpp.i
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/TestCIniFile.cpp" > CMakeFiles/CatchUnitTesting.dir/TestCIniFile.cpp.i
 
 CMakeFiles/CatchUnitTesting.dir/TestCIniFile.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CatchUnitTesting.dir/TestCIniFile.cpp.s"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/FileINIProject/TestCIniFile.cpp" -o CMakeFiles/CatchUnitTesting.dir/TestCIniFile.cpp.s
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/TestCIniFile.cpp" -o CMakeFiles/CatchUnitTesting.dir/TestCIniFile.cpp.s
 
 # Object files for target CatchUnitTesting
 CatchUnitTesting_OBJECTS = \
@@ -95,7 +95,7 @@ CatchUnitTesting.exe: CMakeFiles/CatchUnitTesting.dir/CIniFile.cpp.o
 CatchUnitTesting.exe: CMakeFiles/CatchUnitTesting.dir/TestCIniFile.cpp.o
 CatchUnitTesting.exe: CMakeFiles/CatchUnitTesting.dir/build.make
 CatchUnitTesting.exe: CMakeFiles/CatchUnitTesting.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/FileINIProject/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable CatchUnitTesting.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable CatchUnitTesting.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/CatchUnitTesting.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -108,6 +108,6 @@ CMakeFiles/CatchUnitTesting.dir/clean:
 .PHONY : CMakeFiles/CatchUnitTesting.dir/clean
 
 CMakeFiles/CatchUnitTesting.dir/depend:
-	cd "/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/FileINIProject/cmake-build-debug" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/FileINIProject" "/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/FileINIProject" "/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/FileINIProject/cmake-build-debug" "/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/FileINIProject/cmake-build-debug" "/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/FileINIProject/cmake-build-debug/CMakeFiles/CatchUnitTesting.dir/DependInfo.cmake" --color=$(COLOR)
+	cd "/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/cmake-build-debug" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project" "/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project" "/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/cmake-build-debug" "/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/cmake-build-debug" "/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/cmake-build-debug/CMakeFiles/CatchUnitTesting.dir/DependInfo.cmake" --color=$(COLOR)
 .PHONY : CMakeFiles/CatchUnitTesting.dir/depend
 

@@ -13,7 +13,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9c1dd91a-1323-4afa-9073-3a9b77728446" name="Default Changelist" comment="Ri-organizzazione del programma per una migliore indicizazzione delle funzioni così da poterle ricercare più facilmente.">
-      <change beforePath="$PROJECT_DIR$/Files/ini_file.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Files/ini_file.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Files/Test/ini_test.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Files/Test/ini_test.ini" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -159,6 +161,7 @@
       <workItem from="1568019069105" duration="2144000" />
       <workItem from="1568038515787" duration="857000" />
       <workItem from="1568103245205" duration="17000" />
+      <workItem from="1568107625895" duration="37000" />
     </task>
     <task id="LOCAL-00001" summary="Prima versione del progetto lettura/scrittura su File INI.">
       <created>1563023137275</created>
