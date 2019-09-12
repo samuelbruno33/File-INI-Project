@@ -8,147 +8,155 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/cmake-build-debug"/>
+				<Option working_dir="/home/samuel/Documenti/Università/Lab di Programmazione/File-INI-Project/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/cmake-build-debug"/>
+				<Option working_dir="/home/samuel/Documenti/Università/Lab di Programmazione/File-INI-Project/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/cmake-build-debug"/>
+				<Option working_dir="/home/samuel/Documenti/Università/Lab di Programmazione/File-INI-Project/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="CatchUnitTesting">
-				<Option output="/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/cmake-build-debug/CatchUnitTesting.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/cmake-build-debug"/>
+				<Option output="/home/samuel/Documenti/Università/Lab di Programmazione/File-INI-Project/cmake-build-debug/CatchUnitTesting" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/samuel/Documenti/Università/Lab di Programmazione/File-INI-Project/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add option="-DHAS_BOOST"/>
-					<Add directory="C:/Program Files (x86)/boost"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/include/c++"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/include/c++/x86_64-pc-cygwin"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/include/c++/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/include"/>
+					<Add directory="/opt/boost_1_70_0"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
 					<Add directory="/usr/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/../../../../lib/../include/w32api"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 CatchUnitTesting"/>
-					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 CatchUnitTesting"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="CatchUnitTesting/fast">
-				<Option output="/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/cmake-build-debug/CatchUnitTesting.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/cmake-build-debug"/>
+				<Option output="/home/samuel/Documenti/Università/Lab di Programmazione/File-INI-Project/cmake-build-debug/CatchUnitTesting" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/samuel/Documenti/Università/Lab di Programmazione/File-INI-Project/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add option="-DHAS_BOOST"/>
-					<Add directory="C:/Program Files (x86)/boost"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/include/c++"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/include/c++/x86_64-pc-cygwin"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/include/c++/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/include"/>
+					<Add directory="/opt/boost_1_70_0"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
 					<Add directory="/usr/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/../../../../lib/../include/w32api"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 CatchUnitTesting/fast"/>
-					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 CatchUnitTesting/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="FileINIProject">
-				<Option output="/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/cmake-build-debug/FileINIProject.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/cmake-build-debug"/>
+				<Option output="/home/samuel/Documenti/Università/Lab di Programmazione/File-INI-Project/cmake-build-debug/FileINIProject" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/samuel/Documenti/Università/Lab di Programmazione/File-INI-Project/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add option="-DHAS_BOOST"/>
-					<Add directory="C:/Program Files (x86)/boost"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/include/c++"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/include/c++/x86_64-pc-cygwin"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/include/c++/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/include"/>
+					<Add directory="/opt/boost_1_70_0"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
 					<Add directory="/usr/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/../../../../lib/../include/w32api"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 FileINIProject"/>
-					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 FileINIProject"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="FileINIProject/fast">
-				<Option output="/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/cmake-build-debug/FileINIProject.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/cmake-build-debug"/>
+				<Option output="/home/samuel/Documenti/Università/Lab di Programmazione/File-INI-Project/cmake-build-debug/FileINIProject" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/samuel/Documenti/Università/Lab di Programmazione/File-INI-Project/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add option="-DHAS_BOOST"/>
-					<Add directory="C:/Program Files (x86)/boost"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/include/c++"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/include/c++/x86_64-pc-cygwin"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/include/c++/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/include"/>
+					<Add directory="/opt/boost_1_70_0"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
 					<Add directory="/usr/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/../../../../lib/../include/w32api"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 FileINIProject/fast"/>
-					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 FileINIProject/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/samuel/Documenti/Università/Lab\ di\ Programmazione/File-INI-Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/CIniFile.cpp">
+		<Unit filename="/home/samuel/Documenti/Università/Lab di Programmazione/File-INI-Project/CIniFile.cpp">
 			<Option target="CatchUnitTesting"/>
 			<Option target="FileINIProject"/>
 		</Unit>
-		<Unit filename="/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/CIniFile.h">
+		<Unit filename="/home/samuel/Documenti/Università/Lab di Programmazione/File-INI-Project/CIniFile.h">
 			<Option target="CatchUnitTesting"/>
 			<Option target="FileINIProject"/>
 		</Unit>
-		<Unit filename="/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/Key.h">
+		<Unit filename="/home/samuel/Documenti/Università/Lab di Programmazione/File-INI-Project/Key.h">
 			<Option target="CatchUnitTesting"/>
 			<Option target="FileINIProject"/>
 		</Unit>
-		<Unit filename="/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/TestCIniFile.cpp">
+		<Unit filename="/home/samuel/Documenti/Università/Lab di Programmazione/File-INI-Project/TestCIniFile.cpp">
 			<Option target="CatchUnitTesting"/>
 		</Unit>
-		<Unit filename="/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/main.cpp">
+		<Unit filename="/home/samuel/Documenti/Università/Lab di Programmazione/File-INI-Project/main.cpp">
 			<Option target="FileINIProject"/>
 		</Unit>
-		<Unit filename="/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/CMakeLists.txt">
+		<Unit filename="/home/samuel/Documenti/Università/Lab di Programmazione/File-INI-Project/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

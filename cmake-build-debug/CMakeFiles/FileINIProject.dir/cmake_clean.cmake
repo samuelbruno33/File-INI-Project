@@ -2,8 +2,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/FileINIProject.dir/CIniFile.cpp.o"
   "CMakeFiles/FileINIProject.dir/main.cpp.o"
   "FileINIProject.pdb"
-  "FileINIProject.exe"
-  "libFileINIProject.dll.a"
+  "FileINIProject"
 )
 
 # Per-language clean rules from dependency scanning.

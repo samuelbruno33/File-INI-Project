@@ -50,19 +50,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /cygdrive/c/Users/sbruno/.CLion2019.2/system/cygwin_cmake/bin/cmake.exe
+CMAKE_COMMAND = /opt/clion-2019.1.4/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /cygdrive/c/Users/sbruno/.CLion2019.2/system/cygwin_cmake/bin/cmake.exe -E remove -f
+RM = /opt/clion-2019.1.4/bin/cmake/linux/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project"
+CMAKE_SOURCE_DIR = "/home/samuel/Documenti/Università/Lab di Programmazione/File-INI-Project"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/cmake-build-debug"
+CMAKE_BINARY_DIR = "/home/samuel/Documenti/Università/Lab di Programmazione/File-INI-Project/cmake-build-debug"
 
 #=============================================================================
 # Target rules for target CMakeFiles/CatchUnitTesting.dir
@@ -71,7 +71,7 @@ CMAKE_BINARY_DIR = "/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Prog
 CMakeFiles/CatchUnitTesting.dir/all:
 	$(MAKE) -f CMakeFiles/CatchUnitTesting.dir/build.make CMakeFiles/CatchUnitTesting.dir/depend
 	$(MAKE) -f CMakeFiles/CatchUnitTesting.dir/build.make CMakeFiles/CatchUnitTesting.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/cmake-build-debug/CMakeFiles" --progress-num=1,2,3 "Built target CatchUnitTesting"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/samuel/Documenti/Università/Lab di Programmazione/File-INI-Project/cmake-build-debug/CMakeFiles" --progress-num=1,2,3 "Built target CatchUnitTesting"
 .PHONY : CMakeFiles/CatchUnitTesting.dir/all
 
 # Include target in all.
@@ -81,9 +81,9 @@ all: CMakeFiles/CatchUnitTesting.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/CatchUnitTesting.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/cmake-build-debug/CMakeFiles" 3
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/samuel/Documenti/Università/Lab di Programmazione/File-INI-Project/cmake-build-debug/CMakeFiles" 3
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/CatchUnitTesting.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/cmake-build-debug/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/samuel/Documenti/Università/Lab di Programmazione/File-INI-Project/cmake-build-debug/CMakeFiles" 0
 .PHONY : CMakeFiles/CatchUnitTesting.dir/rule
 
 # Convenience name for target.
@@ -108,7 +108,7 @@ clean: CMakeFiles/CatchUnitTesting.dir/clean
 CMakeFiles/FileINIProject.dir/all:
 	$(MAKE) -f CMakeFiles/FileINIProject.dir/build.make CMakeFiles/FileINIProject.dir/depend
 	$(MAKE) -f CMakeFiles/FileINIProject.dir/build.make CMakeFiles/FileINIProject.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/cmake-build-debug/CMakeFiles" --progress-num=4,5,6 "Built target FileINIProject"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/samuel/Documenti/Università/Lab di Programmazione/File-INI-Project/cmake-build-debug/CMakeFiles" --progress-num=4,5,6 "Built target FileINIProject"
 .PHONY : CMakeFiles/FileINIProject.dir/all
 
 # Include target in all.
@@ -118,9 +118,9 @@ all: CMakeFiles/FileINIProject.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/FileINIProject.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/cmake-build-debug/CMakeFiles" 3
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/samuel/Documenti/Università/Lab di Programmazione/File-INI-Project/cmake-build-debug/CMakeFiles" 3
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/FileINIProject.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/cmake-build-debug/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/samuel/Documenti/Università/Lab di Programmazione/File-INI-Project/cmake-build-debug/CMakeFiles" 0
 .PHONY : CMakeFiles/FileINIProject.dir/rule
 
 # Convenience name for target.

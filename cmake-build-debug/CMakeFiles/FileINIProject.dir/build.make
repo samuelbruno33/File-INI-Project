@@ -34,19 +34,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /cygdrive/c/Users/sbruno/.CLion2019.2/system/cygwin_cmake/bin/cmake.exe
+CMAKE_COMMAND = /opt/clion-2019.1.4/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /cygdrive/c/Users/sbruno/.CLion2019.2/system/cygwin_cmake/bin/cmake.exe -E remove -f
+RM = /opt/clion-2019.1.4/bin/cmake/linux/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project"
+CMAKE_SOURCE_DIR = "/home/samuel/Documenti/Università/Lab di Programmazione/File-INI-Project"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/cmake-build-debug"
+CMAKE_BINARY_DIR = "/home/samuel/Documenti/Università/Lab di Programmazione/File-INI-Project/cmake-build-debug"
 
 # Include any dependencies generated for this target.
 include CMakeFiles/FileINIProject.dir/depend.make
@@ -59,29 +59,29 @@ include CMakeFiles/FileINIProject.dir/flags.make
 
 CMakeFiles/FileINIProject.dir/CIniFile.cpp.o: CMakeFiles/FileINIProject.dir/flags.make
 CMakeFiles/FileINIProject.dir/CIniFile.cpp.o: ../CIniFile.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/FileINIProject.dir/CIniFile.cpp.o"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/FileINIProject.dir/CIniFile.cpp.o -c "/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/CIniFile.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/samuel/Documenti/Università/Lab di Programmazione/File-INI-Project/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/FileINIProject.dir/CIniFile.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/FileINIProject.dir/CIniFile.cpp.o -c "/home/samuel/Documenti/Università/Lab di Programmazione/File-INI-Project/CIniFile.cpp"
 
 CMakeFiles/FileINIProject.dir/CIniFile.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/FileINIProject.dir/CIniFile.cpp.i"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/CIniFile.cpp" > CMakeFiles/FileINIProject.dir/CIniFile.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/samuel/Documenti/Università/Lab di Programmazione/File-INI-Project/CIniFile.cpp" > CMakeFiles/FileINIProject.dir/CIniFile.cpp.i
 
 CMakeFiles/FileINIProject.dir/CIniFile.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/FileINIProject.dir/CIniFile.cpp.s"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/CIniFile.cpp" -o CMakeFiles/FileINIProject.dir/CIniFile.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/samuel/Documenti/Università/Lab di Programmazione/File-INI-Project/CIniFile.cpp" -o CMakeFiles/FileINIProject.dir/CIniFile.cpp.s
 
 CMakeFiles/FileINIProject.dir/main.cpp.o: CMakeFiles/FileINIProject.dir/flags.make
 CMakeFiles/FileINIProject.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/FileINIProject.dir/main.cpp.o"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/FileINIProject.dir/main.cpp.o -c "/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/main.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/samuel/Documenti/Università/Lab di Programmazione/File-INI-Project/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/FileINIProject.dir/main.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/FileINIProject.dir/main.cpp.o -c "/home/samuel/Documenti/Università/Lab di Programmazione/File-INI-Project/main.cpp"
 
 CMakeFiles/FileINIProject.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/FileINIProject.dir/main.cpp.i"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/main.cpp" > CMakeFiles/FileINIProject.dir/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/samuel/Documenti/Università/Lab di Programmazione/File-INI-Project/main.cpp" > CMakeFiles/FileINIProject.dir/main.cpp.i
 
 CMakeFiles/FileINIProject.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/FileINIProject.dir/main.cpp.s"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/main.cpp" -o CMakeFiles/FileINIProject.dir/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/samuel/Documenti/Università/Lab di Programmazione/File-INI-Project/main.cpp" -o CMakeFiles/FileINIProject.dir/main.cpp.s
 
 # Object files for target FileINIProject
 FileINIProject_OBJECTS = \
@@ -91,15 +91,15 @@ FileINIProject_OBJECTS = \
 # External object files for target FileINIProject
 FileINIProject_EXTERNAL_OBJECTS =
 
-FileINIProject.exe: CMakeFiles/FileINIProject.dir/CIniFile.cpp.o
-FileINIProject.exe: CMakeFiles/FileINIProject.dir/main.cpp.o
-FileINIProject.exe: CMakeFiles/FileINIProject.dir/build.make
-FileINIProject.exe: CMakeFiles/FileINIProject.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable FileINIProject.exe"
+FileINIProject: CMakeFiles/FileINIProject.dir/CIniFile.cpp.o
+FileINIProject: CMakeFiles/FileINIProject.dir/main.cpp.o
+FileINIProject: CMakeFiles/FileINIProject.dir/build.make
+FileINIProject: CMakeFiles/FileINIProject.dir/link.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/samuel/Documenti/Università/Lab di Programmazione/File-INI-Project/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable FileINIProject"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/FileINIProject.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
-CMakeFiles/FileINIProject.dir/build: FileINIProject.exe
+CMakeFiles/FileINIProject.dir/build: FileINIProject
 
 .PHONY : CMakeFiles/FileINIProject.dir/build
 
@@ -108,6 +108,6 @@ CMakeFiles/FileINIProject.dir/clean:
 .PHONY : CMakeFiles/FileINIProject.dir/clean
 
 CMakeFiles/FileINIProject.dir/depend:
-	cd "/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/cmake-build-debug" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project" "/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project" "/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/cmake-build-debug" "/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/cmake-build-debug" "/cygdrive/c/Users/sbruno/Documents/Samuel/Varie/Uni/Lab Programmazione/File-INI-Project/cmake-build-debug/CMakeFiles/FileINIProject.dir/DependInfo.cmake" --color=$(COLOR)
+	cd "/home/samuel/Documenti/Università/Lab di Programmazione/File-INI-Project/cmake-build-debug" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/home/samuel/Documenti/Università/Lab di Programmazione/File-INI-Project" "/home/samuel/Documenti/Università/Lab di Programmazione/File-INI-Project" "/home/samuel/Documenti/Università/Lab di Programmazione/File-INI-Project/cmake-build-debug" "/home/samuel/Documenti/Università/Lab di Programmazione/File-INI-Project/cmake-build-debug" "/home/samuel/Documenti/Università/Lab di Programmazione/File-INI-Project/cmake-build-debug/CMakeFiles/FileINIProject.dir/DependInfo.cmake" --color=$(COLOR)
 .PHONY : CMakeFiles/FileINIProject.dir/depend
 
