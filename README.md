@@ -1,4 +1,4 @@
-# File-INI-Project
+# File INI Project
 
 Progetto Universitario per la lettura e la scrittura di un qualsiasi file INI.  
 Per far funzionare correttamente il programma bisogna installare sul proprio terminale una libreria esterna chiamata BOOST.  
